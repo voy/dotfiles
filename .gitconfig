@@ -1,1 +1,24 @@
-Dropbox/conf/.gitconfig
+[user]
+	name = "Vojtech Jasny"
+	email = "voy@voy.cz"
+
+[alias]
+	s = status
+	l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
+	d = diff -b --color
+	branches = branch
+	st = status
+	co = checkout
+	ltree = log --oneline --all --graph
+
+[colors]
+	diff = auto
+	grep = auto
+	status = auto
+	ui = auto
+
+[apply]
+	whitespace = nowarn
+
+[core]
+	pager = less -FXRS

@@ -14,7 +14,7 @@ set list lcs=tab\:\'\ ,trail:~
 
 " skin
 set t_Co=256
-colorscheme 256_king
+colorscheme ir_black
 "colorscheme desert
 "colorscheme inkpot
 "colorscheme desert256
