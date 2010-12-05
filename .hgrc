@@ -1,0 +1,19 @@
+[ui]
+username = Vojtech Jasny <voy@voy.cz>
+merge = meld
+
+[extensions]
+fetch =
+hgext.extdiff =
+hgk=
+hgext.churn =
+hgext.color =
+hgext.color =
+color =
+progress = 
+
+[extdiff]
+cmd.kdiff3 =
+
+[merge-tools]
+kdiff3.args = $base $local $other -o $output
