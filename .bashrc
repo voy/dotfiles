@@ -124,3 +124,4 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 export CDPATH=".:~:~/Work"
+export EDITOR=vim
