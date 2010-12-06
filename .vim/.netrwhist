@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/al3x/.oh-my-zsh/templates'
-let g:netrw_dirhist_2='/home/al3x/.oh-my-zsh'
-let g:netrw_dirhist_3='/home/al3x/.oh-my-zsh/lib'
-let g:netrw_dirhist_4='/usr/lib/python3.1/distutils'
