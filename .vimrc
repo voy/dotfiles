@@ -1,41 +1,39 @@
-set shiftwidth=2	" odsazovani o 4
-set tabstop=2		" tabulator ma sirku 4
-set noexpandtab		" mezery misto tabu
-set showmatch		" pri psani to ukazuje parove zavorky
-set tenc=utf-8 " kodovani terminalu
-set fenc=utf-8		" kodovani souboru
-set enc=utf-8		" ViM kodovani
-set showcmd 
-set mouse=c
 syntax on
+
+" default indent is tab equal to 4 spaces
+set shiftwidth=4
+set tabstop=4
+set expandtab
+
+set showmatch " show pair braces when typing
+
+set tenc=utf-8 " terminal encoding
+set fenc=utf-8 " file encoding
+set enc=utf-8  " vim encoding
+
+set showcmd
+set mouse=c
+
 set list lcs=tab\:\'\ ,trail:~
-"set list lcs=tab\:»\ ,trail:°
-
-
-" skin
-set t_Co=256
+set t_Co=256 " number of colors
 colorscheme ir_black
-"colorscheme desert
-"colorscheme inkpot
-"colorscheme desert256
 
-" zvyrazni aktualni radku
-"hi CursorLine ctermbg=black cterm=none
-"hi CursorLine ctermbg=234 cterm=none
-set cul
-"set cuc
-set nu
+set cul " current row highlight
+"set cuc " current column highlight
+set nu " line numbering
 
-" specificke konfiguraky pro ruzne jazyky
-au BufRead,BufNewFile *.py set filetype=python
-au BufRead,BufNewFile *.html set filetype=htmldjango
-au FileType python source ~/.vimrc_python
+" filetype specific configuration
+autocmd BufRead,BufNewFile *.py set filetype=python
+autocmd BufRead,BufNewFile *.html set filetype=htmldjango
+autocmd FileType python source ~/.vimrc_python
 
-" klavesy
+" keyboard shortcuts
 noremap <F10> :set paste!<CR>
 noremap <silent> <F11> :set nohlsearch<CR>
 noremap <silent> <F12> :set nu!<CR>
 noremap <C-T> :tabnew<CR>
+noremap <C-W> :q<CR>
+noremap <C-O> :FufFile<CR>
 "noremap <Tab> :tabnext<CR>
 noremap <F1> :tabnext 1<CR>
 noremap <F2> :tabnext 2<CR>
@@ -82,12 +80,11 @@ set linebreak
 
 " find as you type
 set incsearch
-" pta se na q! apod.
+" confirm :q! etc.
 set confirm
-" zalohovani
 " set backup
 " set backupdir=~/.backup
-set directory=~/tmp,/tmp,.
+set directory=~/tmp,/tmp,. " directories for swap files
 
 " status line
 set laststatus=2
@@ -116,6 +113,12 @@ autocmd BufWritePre *.html :%s/\s\+$//e
 autocmd BufWritePre *.js :%s/\s\+$//e
 autocmd BufWritePre *.css :%s/\s\+$//e
 autocmd BufWritePre *.json :%s/\s\+$//e
+
+" omnicomplete
+autocmd FileType python set omnifunc=pythoncomplete
+autocmd FileType javascript set omnifunc=javascriptcomplete
+autocmd FileType html set omnifunc=htmlcomplete
+autocmd FileType css set omnifunc=csscomplete
 
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
