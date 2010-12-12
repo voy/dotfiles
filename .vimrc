@@ -1,4 +1,5 @@
 set nocompatible
+call pathogen#runtime_append_all_bundles()
 
 syntax on
 
@@ -112,3 +113,16 @@ imap <F12> <ESC>:set nu!<CR>a
 
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
+
+let g:user_zen_settings = {
+  \  'php' : {
+  \    'extends' : 'html',
+  \    'filters' : 'c',
+  \  },
+  \  'xml' : {
+  \    'extends' : 'html',
+  \  },
+  \  'htmldjango' : {
+  \    'extends' : 'html',
+  \  },
+  \}
