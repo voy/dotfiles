@@ -27,9 +27,9 @@ confirm_view_dir=0
 mouse_move_pages=1
 mouse_move_pages_viewer=1
 fast_refresh=0
-navigate_with_arrows=1
-drop_menus=1
-wrap_mode=1
+navigate_with_arrows=0
+drop_menus=0
+wrap_mode=0
 old_esc_mode=0
 cd_symlinks=1
 show_all_if_ambiguous=0
@@ -106,13 +106,14 @@ filetype_mode=1
 free_space=1
 
 [Dirs]
-other_dir=/home/voy/Work/cdphotoarchive.git/var
-current_is_left=1
+other_dir=/home/voy/Work/affil/src.prehg/affil/apps/pages/templates/partials
+current_is_left=0
 
 [New Left Panel]
 display=listing
 reverse=0
 case_sensitive=1
+exec_first=0
 sort_order=name
 list_mode=full
 user_format=half type name | size | perm
@@ -122,12 +123,12 @@ user_status2=half type name | size | perm
 user_status3=half type name | size | perm
 user_mini_status=0
 panel_display_codepage=Other_8_bit
-exec_first=0
 
 [New Right Panel]
 display=listing
 reverse=0
 case_sensitive=1
+exec_first=0
 sort_order=name
 list_mode=full
 user_format=half type name | size | perm
@@ -137,7 +138,6 @@ user_status2=half type name | size | perm
 user_status3=half type name | size | perm
 user_mini_status=0
 panel_display_codepage=Other_8_bit
-exec_first=0
 
 [Misc]
 ftpfs_password=anonymous@
