@@ -32,7 +32,6 @@ noremap <F10> :set paste!<CR>
 noremap <silent> <F11> :set nohlsearch<CR>
 noremap <silent> <F12> :set nu!<CR>
 noremap <C-T> :tabnew<CR>
-noremap <C-W> :q<CR>
 noremap <C-O> :FufFile<CR>
 "noremap <Tab> :tabnext<CR>
 noremap <F1> :tabnext 1<CR>
@@ -115,10 +114,10 @@ autocmd BufWritePre *.css :%s/\s\+$//e
 autocmd BufWritePre *.json :%s/\s\+$//e
 
 " omnicomplete
-autocmd FileType python set omnifunc=pythoncomplete
-autocmd FileType javascript set omnifunc=javascriptcomplete
-autocmd FileType html set omnifunc=htmlcomplete
-autocmd FileType css set omnifunc=csscomplete
+" autocmd FileType python set omnifunc=pythoncomplete
+" autocmd FileType javascript set omnifunc=javascriptcomplete
+" autocmd FileType html set omnifunc=htmlcomplete
+" autocmd FileType css set omnifunc=csscomplete
 
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
