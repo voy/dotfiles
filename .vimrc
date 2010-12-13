@@ -1,3 +1,6 @@
+set nocompatible
+call pathogen#runtime_append_all_bundles()
+
 syntax on
 
 " default indent is tab equal to 4 spaces
@@ -11,6 +14,10 @@ set tenc=utf-8 " terminal encoding
 set fenc=utf-8 " file encoding
 set enc=utf-8  " vim encoding
 
+" status line
+set ruler
+set laststatus=2
+set statusline=%(%m\ %)%f%(\ %y%)%(\ [%{&fileencoding}]%)%=[%3b,%4(0x%B%)]\ %3c\ %4l\ /%5L\ %4P
 set showcmd
 set mouse=c
 
@@ -19,109 +26,110 @@ set t_Co=256 " number of colors
 colorscheme ir_black
 
 set cul " current row highlight
-"set cuc " current column highlight
-set nu " line numbering
+set nu  " line numbering
+
+" load my ftplugins etc.
+filetype plugin indent on
 
 " filetype specific configuration
 autocmd BufRead,BufNewFile *.py set filetype=python
 autocmd BufRead,BufNewFile *.html set filetype=htmldjango
-autocmd FileType python source ~/.vimrc_python
 
-" keyboard shortcuts
-noremap <F10> :set paste!<CR>
-noremap <silent> <F11> :set nohlsearch<CR>
-noremap <silent> <F12> :set nu!<CR>
-noremap <C-T> :tabnew<CR>
-noremap <C-O> :FufFile<CR>
-"noremap <Tab> :tabnext<CR>
-noremap <F1> :tabnext 1<CR>
-noremap <F2> :tabnext 2<CR>
-noremap <F3> :tabnext 3<CR>
-noremap <F4> :tabnext 4<CR>
-noremap <F5> :tabnext 5<CR>
-noremap <F6> :tabnext 6<CR>
-noremap <F7> :tabnext 7<CR>
-noremap <F8> :tabnext 8<CR>
-noremap <F9> :tabnext 9<CR>
-noremap <C-J> :tabprevious<CR>
-noremap <C-K> :tabnext<CR>
+" python specific indentation settings
+autocmd FileType python set expandtab tabstop=4 smarttab smartindent 
+autocmd FileType python set autoindent softtabstop=4 shiftwidth=4
+autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-imap <F10> <ESC>:set paste!<CR>a
-imap <F11> <ESC>:set nohlsearch<CR>a
-imap <F11> <ESC>:cal VimCommanderToggle()<CR>a
-imap <F12> <ESC>:set nu!<CR>a
-imap <F1> <ESC>:tabnext 1<CR>a
-imap <F2> <ESC>:tabnext 2<CR>a
-imap <F3> <ESC>:tabnext 3<CR>a
-imap <F4> <ESC>:tabnext 4<CR>a
-imap <F5> <ESC>:tabnext 5<CR>a
-imap <F6> <ESC>:tabnext 6<CR>a
-imap <F7> <ESC>:tabnext 7<CR>a
-imap <F8> <ESC>:tabnext 8<CR>a
-imap <F9> <ESC>:tabnext 9<CR>a
-
-" zalamuj text na nejblizsi mezere
-" a na zacatku navazujiciho radku zobraz +
+" wrap text at nearest space and show + at the beginning of the next line
 set showbreak=+
 set linebreak
 
-" umozni posouvani po zalomenych radcich v normal modu
-"noremap <Up> gk
-"noremap <Down> gj
-
-" umozni posouvani po zalomenych radcich v insert modu
-"imap <up> <c-o>gk
-"imap <down> <c-o>gj
-
-" scrollovani bufferu
-" noremap <C-K> <C-Y>
-" noremap <C-J> <C-E>
-
-" find as you type
+" make search behave in a sane way
 set incsearch
-" confirm :q! etc.
-set confirm
-" set backup
-" set backupdir=~/.backup
-set directory=~/tmp,/tmp,. " directories for swap files
+set ignorecase
+set smartcase
 
-" status line
-set laststatus=2
-set statusline=%(%m\ %)%f%(\ %y%)%(\ [%{&fileencoding}]%)%=[%3b,%4(0x%B%)]\ %3c\ %4l\ /%5L\ %4P
+set backup
+set backupdir=~/tmp
+set directory=~/tmp,/tmp,. " directories for swap files
+set confirm " confirm :q! etc.
 
 highlight User1 guibg=white guifg=blue
 highlight User2 guibg=white guifg=red
-" maze pres konce radu
-" set backspace=indent,eol,start
-" set shiftround
+" allow backspaces to eat indents, end-of-line/beginning-of-line characters
+set backspace=indent,eol,start
 
-" pouziva globalni schranku
-set clipboard=unnamed
+set foldmethod=indent
+set nofoldenable
 
-" Tab nabidke pro ex
-set wildchar=<Tab>
-set wildmenu
-set wildmode=longest:full,full
+" remove trailing whitespace from code files on save
+function StripTrailingWhitespace()
 
-set foldmethod=marker
+  " store current cursor location
+  silent exe "normal mq<CR>"
+  " store the current search value
+  let saved_search = @/
 
-" set wrapmargin=10
 
-autocmd BufWritePre *.py :%s/\s\+$//e
-autocmd BufWritePre *.html :%s/\s\+$//e
-autocmd BufWritePre *.js :%s/\s\+$//e
-autocmd BufWritePre *.css :%s/\s\+$//e
-autocmd BufWritePre *.json :%s/\s\+$//e
+  " delete the whitespace (e means don't warn if pattern not found)
+  %s/\s\+$//e
 
-" omnicomplete
-" autocmd FileType python set omnifunc=pythoncomplete
-" autocmd FileType javascript set omnifunc=javascriptcomplete
-" autocmd FileType html set omnifunc=htmlcomplete
-" autocmd FileType css set omnifunc=csscomplete
+  " restore old cursor location
+  silent exe "normal `q<CR>"
+  " restore the search value
+  let @/ = saved_search
+
+endfunction
+
+autocmd BufWritePre *.py,*.html,*.js,*.css,*.json call StripTrailingWhitespace()
 
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
-set wildignore=*.pyc 
+set wildignore=*.pyc
 
 set hlsearch
-nnoremap <CR> :noh<CR><CR>
+nnoremap <CR> :noh<CR><CR> " clear search higlight on enter
+
+" w!! asks for root password and saves as root
+cmap w!! %!sudo tee > /dev/null %
+
+" keyboard mappings
+
+" learning mode - don't touch those pesky arrow keys :-)
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" movement by screen line as opposed to file line
+nnoremap j gj
+nnoremap k gk
+
+noremap <F10> :set paste!<CR>
+noremap <silent> <F11> :set nohlsearch<CR>
+noremap <silent> <F12> :set nu!<CR>
+
+imap <F10> <ESC>:set paste!<CR>a
+imap <F11> <ESC>:set nohlsearch<CR>a
+imap <F12> <ESC>:set nu!<CR>a
+
+" using jj is easier to type than ESC or C-[ for leaving insert mode
+inoremap jj <ESC>
+
+" make zencoding work for filetypes other than html
+let g:user_zen_settings = {
+  \  'php' : {
+  \    'extends' : 'html',
+  \    'filters' : 'c',
+  \  },
+  \  'xml' : {
+  \    'extends' : 'html',
+  \  },
+  \  'htmldjango' : {
+  \    'extends' : 'html',
+  \  },
+  \}
