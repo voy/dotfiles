@@ -1,6 +1,8 @@
 set nocompatible
 call pathogen#runtime_append_all_bundles()
 
+let mapleader=","
+
 syntax on
 
 " default indent is tab equal to 4 spaces
@@ -13,6 +15,9 @@ set showmatch " show pair braces when typing
 set tenc=utf-8 " terminal encoding
 set fenc=utf-8 " file encoding
 set enc=utf-8  " vim encoding
+
+" cd into current file directory - may possibly break some plugins
+" set autochdir
 
 " status line
 set ruler
@@ -28,8 +33,8 @@ colorscheme ir_black
 set cul " current row highlight
 set nu  " line numbering
 
-" load my ftplugins etc.
-filetype plugin indent on
+" load my ftplugins etc. - commented out, breaks my indentation
+" filetype plugin indent on
 
 " filetype specific configuration
 autocmd BufRead,BufNewFile *.py set filetype=python
@@ -39,6 +44,9 @@ autocmd BufRead,BufNewFile *.html set filetype=htmldjango
 autocmd FileType python set expandtab tabstop=4 smarttab smartindent 
 autocmd FileType python set autoindent softtabstop=4 shiftwidth=4
 autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+" no wrapping long lines in html
+autocmd FileType html,htmldjango set nowrap
 
 " wrap text at nearest space and show + at the beginning of the next line
 set showbreak=+
@@ -69,7 +77,6 @@ function StripTrailingWhitespace()
   silent exe "normal mq<CR>"
   " store the current search value
   let saved_search = @/
-
 
   " delete the whitespace (e means don't warn if pattern not found)
   %s/\s\+$//e
@@ -109,13 +116,21 @@ imap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
-noremap <F10> :set paste!<CR>
+" alternative tab switching
+noremap <C-J> :tabprevious<CR>
+noremap <C-K> :tabnext<CR>
+
+set pastetoggle=<F10>
 noremap <silent> <F11> :set nohlsearch<CR>
 noremap <silent> <F12> :set nu!<CR>
 
 imap <F10> <ESC>:set paste!<CR>a
 imap <F11> <ESC>:set nohlsearch<CR>a
 imap <F12> <ESC>:set nu!<CR>a
+
+" quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>wv :so $MYVIMRC<CR>
 
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>

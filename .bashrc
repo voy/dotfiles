@@ -65,15 +65,6 @@ xterm*|rxvt*)
 	;;
 esac
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-#if [ -f ~/.bash_aliases ]; then
-#    . ~/.bash_aliases
-#fi
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
 	eval "`dircolors -b`"
@@ -99,11 +90,10 @@ _expand()
   return 0
 }
 
-# make manpages look like a rainbow
-export MANPAGER="/usr/bin/most -s"
-
-# enable extended globbing in bash
-shopt -s extglob
+# nice colorful manpages
+if [ -f /usr/bin/most ]; then
+	export MANPAGER="/usr/bin/most -s"
+fi
 
 # don't strip color control codes
 alias less='less -r'
@@ -112,6 +102,8 @@ alias yuicompressor='java -jar ~/bin/yuicompressor.jar'
 alias df='df -h'
 alias du='du -h'
 alias ll='ls -alh'
+alias vim='vim -p'
+alias vi='vim -p'
 
 # alias for drupal shell
 if [ -f ~/Work/drush/drush ]; then
