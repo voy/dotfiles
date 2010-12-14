@@ -71,7 +71,7 @@ set foldmethod=indent
 set nofoldenable
 
 " remove trailing whitespace from code files on save
-function StripTrailingWhitespace()
+function! StripTrailingWhitespace()
 
   " store current cursor location
   silent exe "normal mq<CR>"
