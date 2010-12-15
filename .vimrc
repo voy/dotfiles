@@ -5,19 +5,20 @@ let mapleader=","
 
 syntax on
 
+set history=1000 " longer history of searches and commands
+
+set hidden " remember undo and stuff when I close buffers
+
 " default indent is tab equal to 4 spaces
 set shiftwidth=4
 set tabstop=4
-set expandtab
+set noexpandtab
 
 set showmatch " show pair braces when typing
 
 set tenc=utf-8 " terminal encoding
 set fenc=utf-8 " file encoding
 set enc=utf-8  " vim encoding
-
-" cd into current file directory - may possibly break some plugins
-" set autochdir
 
 " status line
 set ruler
@@ -90,12 +91,19 @@ endfunction
 
 autocmd BufWritePre *.py,*.html,*.js,*.css,*.json call StripTrailingWhitespace()
 
+" saner autocompletion (behave more like shell)
+set wildmenu
+set wildmode=list:longest
+
+" keep more context when scrolling (3 lines behind cursor)
+set scrolloff=3
+
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
 set wildignore=*.pyc
 
 set hlsearch
-nnoremap <CR> :noh<CR><CR> " clear search higlight on enter
+nnoremap <CR> :noh<CR><CR> " clear search highlight on enter
 
 " w!! asks for root password and saves as root
 cmap w!! %!sudo tee > /dev/null %
@@ -132,6 +140,10 @@ imap <F12> <ESC>:set nu!<CR>a
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>wv :so $MYVIMRC<CR>
 
+" some leader shortcuts for common commands
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
 
@@ -148,3 +160,5 @@ let g:user_zen_settings = {
   \    'extends' : 'html',
   \  },
   \}
+
+let g:CommandTMaxFiles=20000
