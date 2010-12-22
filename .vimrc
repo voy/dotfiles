@@ -7,7 +7,8 @@ syntax on
 
 set history=1000 " longer history of searches and commands
 
-set hidden " remember undo and stuff when I close buffers
+" remember undo and stuff when I close buffers
+" set hidden
 
 " default indent is tab equal to 4 spaces
 set shiftwidth=4
@@ -142,6 +143,8 @@ nmap <silent> <leader>wv :so $MYVIMRC<CR>
 " some leader shortcuts for common commands
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
+
+nmap <leader>nt :NERDTree<CR>
 
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
