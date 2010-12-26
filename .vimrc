@@ -7,7 +7,8 @@ syntax on
 
 set history=1000 " longer history of searches and commands
 
-set hidden " remember undo and stuff when I close buffers
+" remember undo and stuff when I close buffers
+" set hidden
 
 " default indent is tab equal to 4 spaces
 set shiftwidth=4
@@ -42,12 +43,12 @@ autocmd BufRead,BufNewFile *.py set filetype=python
 autocmd BufRead,BufNewFile *.html set filetype=htmldjango
 
 " python specific indentation settings
-autocmd FileType python set expandtab tabstop=4 smarttab smartindent 
+autocmd FileType python set expandtab tabstop=4 smarttab smartindent
 autocmd FileType python set autoindent softtabstop=4 shiftwidth=4
 autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 " no wrapping long lines in html
-autocmd FileType html,htmldjango set nowrap
+autocmd FileType html,htmldjango set nowrap noexpandtab
 
 " wrap text at nearest space and show + at the beginning of the next line
 set showbreak=+
@@ -133,7 +134,6 @@ noremap <silent> <F11> :set nohlsearch<CR>
 noremap <silent> <F12> :set nu!<CR>
 
 imap <F10> <ESC>:set paste!<CR>a
-imap <F11> <ESC>:set nohlsearch<CR>a
 imap <F12> <ESC>:set nu!<CR>a
 
 " quickly edit/reload the vimrc file
@@ -143,6 +143,8 @@ nmap <silent> <leader>wv :so $MYVIMRC<CR>
 " some leader shortcuts for common commands
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
+
+nmap <leader>nt :NERDTree<CR>
 
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
