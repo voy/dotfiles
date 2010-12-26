@@ -116,6 +116,9 @@ export WORKON_HOME=$HOME/.virtualenvs
 if [ -f /usr/local/bin/virtualenvwrapper_bashrc ]; then
 	. /usr/local/bin/virtualenvwrapper_bashrc
 fi
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+	. /usr/local/bin/virtualenvwrapper.sh
+fi
 
 WORKDIR=/home/voy/Work
 alias cdauction='cd $WORKDIR/auction/src'
