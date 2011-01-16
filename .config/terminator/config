@@ -1,0 +1,21 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  borderless = True
+[keybindings]
+  next_tab = <Alt>Right
+  prev_tab = <Alt>Left
+[profiles]
+  [[default]]
+    use_system_font = False
+    font = Monospace 11
+    scrollbar_position = hidden
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
