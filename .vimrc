@@ -97,11 +97,11 @@ set wildmenu
 set wildmode=list:longest
 
 " keep more context when scrolling (3 lines behind cursor)
-set scrolloff=3
+set scrolloff=5
 
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
-set wildignore=*.pyc
+set wildignore=*.pyc,*.jpg,*.gif,*.pdf
 
 set hlsearch
 nnoremap <CR> :noh<CR><CR> " clear search highlight on enter
