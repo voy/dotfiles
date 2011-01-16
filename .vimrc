@@ -38,6 +38,9 @@ set nu  " line numbering
 " load my ftplugins etc. - commented out, breaks my indentation
 " filetype plugin indent on
 
+" autoindentation for all filetypes
+set autoindent
+
 " filetype specific configuration
 autocmd BufRead,BufNewFile *.py set filetype=python
 autocmd BufRead,BufNewFile *.html set filetype=htmldjango

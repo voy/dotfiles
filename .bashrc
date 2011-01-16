@@ -121,14 +121,14 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 WORKDIR=/home/voy/Work
-alias cdauction='cd $WORKDIR/auction/src'
-alias cdaffil='cd $WORKDIR/affil/src'
-alias cdbidzwin='cd $WORKDIR/bidzwin/src'
-alias cdwestbids='cd $WORKDIR/bidzwin/src'
+alias cdauction='cd $WORKDIR/auction'
+alias cdaffil='cd $WORKDIR/affil'
+alias cdbidzwin='cd $WORKDIR/bidzwin'
+alias cdwestbids='cd $WORKDIR/bidzwin'
+alias cdcasharena='cd $WORKDIR/casharena'
 alias cdwork='cd $WORKDIR'
 
 export PATH="~/bin:$PATH"
-export CDPATH=".:~:~/Work"
 export EDITOR=vim
 
 # pip bash completion start
