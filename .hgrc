@@ -1,5 +1,6 @@
 [ui]
 username = Vojtech Jasny <voy@voy.cz>
+ignore = ~/.hgignore
 merge = meld
 
 [extensions]

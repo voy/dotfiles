@@ -1,13 +1,20 @@
 [global_config]
-  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  borderless = True
+  enabled_plugins = ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
 [keybindings]
   next_tab = <Alt>Right
+  go_up = <Shift><Control>Up
+  resize_up = None
+  resize_left = None
   prev_tab = <Alt>Left
+  go_down = <Shift><Control>Down
+  go_right = <Shift><Control>Right
+  go_left = <Shift><Control>Left
+  resize_right = None
+  resize_down = None
 [profiles]
   [[default]]
     use_system_font = False
-    font = Monospace 11
+    font = Monospace 13
     scrollbar_position = hidden
     scrollback_infinite = True
 [layouts]
