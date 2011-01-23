@@ -37,6 +37,7 @@ set nu  " line numbering
 
 " load my ftplugins etc. - commented out, breaks my indentation
 " filetype plugin indent on
+filetype plugin on
 
 " autoindentation for all filetypes
 set autoindent
