@@ -133,6 +133,9 @@ nnoremap k gk
 noremap <C-J> :tabprevious<CR>
 noremap <C-K> :tabnext<CR>
 
+" gp select previously pasted or edited text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 set pastetoggle=<F10>
 noremap <silent> <F11> :set nohlsearch<CR>
 noremap <silent> <F12> :set nu!<CR>
