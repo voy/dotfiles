@@ -121,14 +121,18 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 fi
 
 WORKDIR=/home/voy/Work
+alias cdwork='cd $WORKDIR'
+
+# I3CZ
+
+alias list_instances_us='list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
+alias list_instances_eu='list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
+
 alias cdauction='cd $WORKDIR/auction'
 alias cdaffil='cd $WORKDIR/affil'
 alias cdbidzwin='cd $WORKDIR/bidzwin'
 alias cdwestbids='cd $WORKDIR/bidzwin'
 alias cdcasharena='cd $WORKDIR/casharena'
-alias cdwork='cd $WORKDIR'
-
-alias list_instances_us='list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
 
 export PATH="~/bin:$PATH"
 export EDITOR=vim
