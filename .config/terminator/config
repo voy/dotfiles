@@ -3,19 +3,20 @@
 [keybindings]
   next_tab = <Alt>Right
   go_up = <Shift><Control>Up
-  resize_up = None
-  resize_left = None
+  resize_up = <Shift><Control><Alt>Up
+  resize_left = <Shift><Control><Alt>Left
   prev_tab = <Alt>Left
   go_down = <Shift><Control>Down
   go_right = <Shift><Control>Right
   go_left = <Shift><Control>Left
-  resize_right = None
-  resize_down = None
+  resize_right = <Shift><Control><Alt>Right
+  resize_down = <Shift><Control><Alt>Down
 [profiles]
   [[default]]
-    use_system_font = False
-    font = Monospace 13
     scrollbar_position = hidden
+    scroll_on_output = False
+    font = Monospace 13
+    use_system_font = False
     scrollback_infinite = True
 [layouts]
   [[default]]

@@ -125,11 +125,16 @@ alias cdwork='cd $WORKDIR'
 
 # I3CZ
 
-alias list_instances_us='list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
-alias list_instances_eu='list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
+alias list_instances_us='AWS_CREDENTIAL_FILE=~/.ec2/comoga.ini list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
+alias list_instances_eu='AWS_CREDENTIAL_FILE=~/.ec2/comoga.ini list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
+alias list_instances_us_bw='AWS_CREDENTIAL_FILE=~/.ec2/bidzwin.ini list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
+alias list_instances_eu_bw='AWS_CREDENTIAL_FILE=~/.ec2/bidzwin.ini list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
+alias sshus='ssh -i ~/.ssh/comoga-us.pem'
+alias sshtunus='ssh -i /home/voy/.ssh/comoga-us.pem -R 8080:hg.malina:80'
 
 alias cdauction='cd $WORKDIR/auction'
 alias cdaffil='cd $WORKDIR/affil'
+alias cdknitting='cd $WORKDIR/knitting'
 alias cdbidzwin='cd $WORKDIR/bidzwin'
 alias cdwestbids='cd $WORKDIR/bidzwin'
 alias cdcasharena='cd $WORKDIR/casharena'

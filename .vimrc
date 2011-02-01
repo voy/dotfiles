@@ -30,7 +30,7 @@ set mouse=c
 
 set list lcs=tab\:\'\ ,trail:~
 set t_Co=256 " number of colors
-colorscheme ir_black
+colorscheme blacklight
 
 set cul " current row highlight
 set nu  " line numbering
@@ -50,6 +50,8 @@ autocmd BufRead,BufNewFile *.html set filetype=htmldjango
 autocmd FileType python set expandtab tabstop=4 smarttab smartindent
 autocmd FileType python set autoindent softtabstop=4 shiftwidth=4
 autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+autocmd FileType css set smarttab smartindent
 
 " no wrapping long lines in html
 autocmd FileType html,htmldjango set nowrap noexpandtab
