@@ -154,6 +154,7 @@ nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 
 nmap <leader>nt :NERDTree<CR>
+nmap <leader>nw :set nowrap<CR>
 
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
@@ -173,3 +174,6 @@ let g:user_zen_settings = {
   \}
 
 let g:CommandTMaxFiles=20000
+
+" no cursor line underline
+hi clear CursorLine
