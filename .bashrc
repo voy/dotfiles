@@ -2,6 +2,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# virtualenvwrapper - must run even for non-interactive mode
+export WORKON_HOME=$HOME/.virtualenvs
+if [ -f /usr/local/bin/virtualenvwrapper_bashrc ]; then
+	. /usr/local/bin/virtualenvwrapper_bashrc
+fi
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+	. /usr/local/bin/virtualenvwrapper.sh
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -111,15 +120,6 @@ if [ -f ~/Work/drush/drush ]; then
 	alias drush='~/Work/drush/drush'
 fi
 
-# virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-if [ -f /usr/local/bin/virtualenvwrapper_bashrc ]; then
-	. /usr/local/bin/virtualenvwrapper_bashrc
-fi
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-	. /usr/local/bin/virtualenvwrapper.sh
-fi
-
 WORKDIR=/home/voy/Work
 alias cdwork='cd $WORKDIR'
 
@@ -139,6 +139,7 @@ alias cdknitting='cd $WORKDIR/knitting'
 alias cdbidzwin='cd $WORKDIR/bidzwin/bidzwin'
 alias cdwestbids='cd $WORKDIR/bidzwin/bidzwin'
 alias cdcasharena='cd $WORKDIR/casharena/casharena'
+alias cdcasharena='cd $WORKDIR/bonus/bonus'
 alias cdsolid='cd $WORKDIR/solid/solid'
 
 export PATH="~/bin:$PATH"

@@ -5,6 +5,7 @@
   go_up = <Shift><Control>Up
   resize_up = <Shift><Control><Alt>Up
   resize_left = <Shift><Control><Alt>Left
+  full_screen = None
   prev_tab = <Alt>Left
   go_down = <Shift><Control>Down
   go_right = <Shift><Control>Right
