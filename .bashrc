@@ -139,7 +139,7 @@ alias cdknitting='cd $WORKDIR/knitting'
 alias cdbidzwin='cd $WORKDIR/bidzwin/bidzwin'
 alias cdwestbids='cd $WORKDIR/bidzwin/bidzwin'
 alias cdcasharena='cd $WORKDIR/casharena/casharena'
-alias cdcasharena='cd $WORKDIR/bonus/bonus'
+alias cdbonus='cd $WORKDIR/bonus/bonus'
 alias cdsolid='cd $WORKDIR/solid/solid'
 
 export PATH="~/bin:$PATH"
