@@ -72,6 +72,7 @@ set confirm " confirm :q! etc.
 
 highlight User1 guibg=white guifg=blue
 highlight User2 guibg=white guifg=red
+highlight spellbad ctermbg=88
 " allow backspaces to eat indents, end-of-line/beginning-of-line characters
 set backspace=indent,eol,start
 

@@ -1,17 +1,18 @@
 [ui]
 username = Vojtech Jasny <voy@voy.cz>
 ignore = ~/.hgignore
-merge = meld
+merge = internal:merge
 
 [extensions]
 fetch =
 hgext.extdiff =
-hgk=
+hgk =
 hgext.churn =
 hgext.color =
 hgext.color =
 color =
-progress = 
+progress =
+shelve = ~/bin/hgshelve/hgshelve.py
 
 [extdiff]
 cmd.kdiff3 =

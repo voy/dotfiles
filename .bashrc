@@ -94,11 +94,9 @@ if [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
-# removes expansion of ~ to /home/username - doesn't seem to work though
-_expand()
-{
-  return 0
-}
+if [ -f ~/bin/django_bash_completion ]; then
+	. ~/bin/django_bash_completion
+fi
 
 # nice colorful manpages
 if [ -f /usr/bin/most ]; then
