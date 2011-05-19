@@ -70,9 +70,10 @@ set backupdir=~/tmp
 set directory=~/tmp,/tmp,. " directories for swap files
 set confirm " confirm :q! etc.
 
-highlight User1 guibg=white guifg=blue
-highlight User2 guibg=white guifg=red
-highlight spellbad ctermbg=88
+hi User1 guibg=white guifg=blue
+hi User2 guibg=white guifg=red
+hi spellbad ctermbg=88
+hi clear Underlined
 " allow backspaces to eat indents, end-of-line/beginning-of-line characters
 set backspace=indent,eol,start
 
@@ -102,7 +103,7 @@ autocmd BufWritePre *.py,*.html,*.js,*.css,*.json call StripTrailingWhitespace()
 " saner autocompletion (behave more like shell)
 set wildmenu
 set wildmode=list:longest
-set wildignore=*.pyc,*.jpg,*.gif,*.pdf,*.o,*.so
+set wildignore=*.pyc,*.jpg,*.gif,*png,*.pdf,*.o,*.so
 
 " keep more context when scrolling (3 lines behind cursor)
 set scrolloff=5
@@ -178,3 +179,6 @@ let g:CommandTMaxFiles=20000
 
 " no cursor line underline
 hi clear CursorLine
+
+" AutoClose (close also <>)
+let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", "<": ">"}

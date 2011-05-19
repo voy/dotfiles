@@ -140,7 +140,8 @@ alias cdcasharena='cd $WORKDIR/casharena/casharena'
 alias cdbonus='cd $WORKDIR/bonus/bonus'
 alias cdsolid='cd $WORKDIR/solid/solid'
 
-export PATH="~/bin:$PATH"
+# /opt/vim/bin is temporary until ubuntu fixes vim
+export PATH="/opt/vim/bin:~/bin:$PATH"
 export EDITOR=vim
 
 # pip bash completion start
