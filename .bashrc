@@ -127,8 +127,6 @@ alias list_instances_us='AWS_CREDENTIAL_FILE=~/.ec2/comoga.ini list_instances -r
 alias list_instances_eu='AWS_CREDENTIAL_FILE=~/.ec2/comoga.ini list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
 alias list_instances_us_bw='AWS_CREDENTIAL_FILE=~/.ec2/bidzwin.ini list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
 alias list_instances_eu_bw='AWS_CREDENTIAL_FILE=~/.ec2/bidzwin.ini list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
-alias sshus='ssh -i ~/.ssh/comoga-us.pem'
-alias ssheu='ssh -i ~/.ssh/bidzwin.pem'
 alias sshtunus='ssh -i /home/voy/.ssh/comoga-us.pem -R 8080:hg.malina:80'
 
 alias cdauction='cd $WORKDIR/auction/auction'

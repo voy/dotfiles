@@ -111,7 +111,8 @@ set scrolloff=5
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
 
-set hlsearch
+" experimenting with hlsearch turned off
+" set hlsearch
 nnoremap <CR> :noh<CR><CR> " clear search highlight on enter
 
 " w!! asks for root password and saves as root
@@ -141,11 +142,11 @@ noremap <C-K> :tabnext<CR>
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 set pastetoggle=<F10>
-noremap <silent> <F11> :set nohlsearch<CR>
-noremap <silent> <F12> :set nu!<CR>
+noremap <silent> <F11> :set hlsearch!<CR>
+noremap <silent> <F12> :set nunumber!<CR>
 
 imap <F10> <ESC>:set paste!<CR>a
-imap <F12> <ESC>:set nu!<CR>a
+imap <F12> <ESC>:set nunumber!<CR>a
 
 " quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -157,6 +158,9 @@ nmap <leader>q :q<CR>
 
 nmap <leader>nt :NERDTree<CR>
 nmap <leader>nw :set nowrap<CR>
+
+" dot returns cursor back after command is repeated
+nmap . .`[
 
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
@@ -182,3 +186,6 @@ hi clear CursorLine
 
 " AutoClose (close also <>)
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", "<": ">"}
+
+" custom snippets for snipmate
+let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate/snippets/"
