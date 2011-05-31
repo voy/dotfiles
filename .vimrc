@@ -189,3 +189,8 @@ let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", "<": "
 
 " custom snippets for snipmate
 let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate/snippets/"
+
+" load site-specific configuration
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
