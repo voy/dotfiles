@@ -184,9 +184,6 @@ let g:CommandTMaxFiles=20000
 " no cursor line underline
 hi clear CursorLine
 
-" AutoClose (close also <>)
-let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", "<": ">"}
-
 " custom snippets for snipmate
 let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate/snippets/"
 
