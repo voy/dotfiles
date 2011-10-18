@@ -24,11 +24,16 @@ set enc=utf-8  " vim encoding
 " status line
 set ruler
 set laststatus=2
-set statusline=%(%m\ %)%f%(\ %y%)%(\ [%{&fileencoding}]%)%=[%3b,%4(0x%B%)]\ %3c\ %4l\ /%5L\ %4P
+set statusline=%(%m\ %)%f%(\ %y%)%(\ [%{&fileencoding}]%)\ %{fugitive#statusline()}%=[%3b,%4(0x%B%)]\ %3c\ %4l\ /%5L\ %4P
 set showcmd
-set mouse=c
+set mouse=a
 
+" display leading tabs and trailing whitespace
 set list lcs=tab\:\'\ ,trail:~
+" FIXME: temporarily disabled
+set nolist
+noremap <silent> <F19> :set list!<CR>
+
 set t_Co=256 " number of colors
 colorscheme blacklight
 
@@ -55,6 +60,7 @@ autocmd FileType css set smarttab smartindent
 
 " no wrapping long lines in html
 autocmd FileType html,htmldjango set nowrap noexpandtab
+autocmd FileType javascript set nowrap expandtab
 
 " wrap text at nearest space and show + at the beginning of the next line
 set showbreak=+
@@ -98,7 +104,8 @@ function! StripTrailingWhitespace()
 
 endfunction
 
-autocmd BufWritePre *.py,*.html,*.js,*.css,*.json call StripTrailingWhitespace()
+" FIXME: temporarily disabled trailing whitespace striping
+" autocmd BufWritePre *.py,*.html,*.js,*.css,*.json call StripTrailingWhitespace()
 
 " saner autocompletion (behave more like shell)
 set wildmenu
@@ -191,3 +198,6 @@ let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate/snippets/"
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+" gui font
+set gfn=Monaco:h13

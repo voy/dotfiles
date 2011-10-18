@@ -103,9 +103,16 @@ if [ -f /usr/bin/most ]; then
 	export MANPAGER="/usr/bin/most -s"
 fi
 
+which ack-grep > /dev/null
+if [ $? -eq 0 ]; then
+	ACK_BINARY=`which ack-grep`
+else
+	ACK_BINARY=`which ack`
+fi
+
 # don't strip color control codes
 alias less='less -r'
-alias ack='ack-grep --smart-case'
+alias ack=$ACK_BINARY
 alias yuicompressor='java -jar ~/bin/yuicompressor.jar'
 alias df='df -h'
 alias du='du -h'
@@ -138,8 +145,9 @@ alias cdcasharena='cd $WORKDIR/casharena/casharena'
 alias cdbonus='cd $WORKDIR/bonus/bonus'
 alias cdsolid='cd $WORKDIR/solid/solid'
 
-# /opt/vim/bin is temporary until ubuntu fixes vim
-export PATH="/opt/vim/bin:~/bin:$PATH"
+# custom compiled vim
+export PATH="$HOME/bin/vim/bin:/opt/vim/bin:$HOME/bin:$PATH"
+
 export EDITOR=vim
 
 # pip bash completion start
@@ -154,3 +162,15 @@ complete -o default -F _pip_completion pip
 
 # autocompletion in python
 export PYTHONSTARTUP="/home/voy/.pyrc"
+
+# on macos show colors in terminal
+export CLICOLOR=1
+
+if [ `hostname` = "vanderpool" ]; then
+	export GIT_AUTHOR_NAME='Vojtech Jasny'
+	export GIT_AUTHOR_EMAIL='vojtech.jasny@gooddata.com'
+fi
+
+if [ -r ~/.bashrc.local ]; then
+	source ~/.bashrc.local
+fi

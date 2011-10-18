@@ -1,3 +1,4 @@
+# overridden for other environments by env variables
 [user]
 	name = "Vojtech Jasny"
 	email = "voy@voy.cz"
@@ -10,6 +11,7 @@
 	st = status
 	co = checkout
 	ltree = log --oneline --all --graph
+	ls = stash list
 
 [colors]
 	diff = auto
