@@ -58,10 +58,20 @@ color_prompt=
 	fi
 fi
 
+function parse_git_branch {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "("${ref#refs/heads/}")"
+}
+
+WHITE="\[\033[00m\]"
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+YELLOW="\[\033[0;33m\]"
+
 if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1="${debian_chroot:+($debian_chroot)}$GREEN\u@\h:$BLUE\w$YELLOW \$(parse_git_branch)$WHITE\$ "
 else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1="${debian_chroot:+($debian_chroot)}\u@\h:\w \$(parse_git_branch)\$ "
 fi
 unset color_prompt force_color_prompt
 
@@ -173,4 +183,8 @@ fi
 
 if [ -r ~/.bashrc.local ]; then
 	source ~/.bashrc.local
+fi
+
+if [ -r ~/bin/git-completion.bash ]; then
+	source ~/bin/git-completion.bash
 fi
