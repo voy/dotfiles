@@ -6,12 +6,12 @@
 [alias]
 	s = status
 	l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
-	d = diff -b --color
-	branches = branch
+	d = diff --color
 	st = status
 	co = checkout
+	co = checkout
+	br = branch
 	ltree = log --oneline --all --graph
-	ls = stash list
 
 [colors]
 	diff = auto
