@@ -11,6 +11,7 @@
 	co = checkout
 	co = checkout
 	br = branch
+	pr = pull --rebase
 	ltree = log --oneline --all --graph
 
 [colors]
