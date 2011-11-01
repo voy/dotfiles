@@ -56,10 +56,10 @@ autocmd FileType python set expandtab tabstop=4 smarttab smartindent
 autocmd FileType python set autoindent softtabstop=4 shiftwidth=4
 autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-autocmd FileType css set smarttab smartindent
+autocmd FileType css,scss set smarttab smartindent expandtab
 
 " no wrapping long lines in html
-autocmd FileType html,htmldjango set nowrap noexpandtab
+autocmd FileType html,htmldjango set nowrap expandtab
 autocmd FileType javascript set nowrap expandtab
 
 " wrap text at nearest space and show + at the beginning of the next line
@@ -166,25 +166,13 @@ nmap <leader>q :q<CR>
 nmap <leader>nt :NERDTree<CR>
 nmap <leader>nw :set nowrap!<CR>
 
+noremap <leader>r :CommandTFlush<cr>
+
 " dot returns cursor back after command is repeated
 nmap . .`[
 
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
-
-" make zencoding work for filetypes other than html
-let g:user_zen_settings = {
-  \  'php' : {
-  \    'extends' : 'html',
-  \    'filters' : 'c',
-  \  },
-  \  'xml' : {
-  \    'extends' : 'html',
-  \  },
-  \  'htmldjango' : {
-  \    'extends' : 'html',
-  \  },
-  \}
 
 let g:CommandTMaxFiles=20000
 

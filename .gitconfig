@@ -9,10 +9,14 @@
 	d = diff --color
 	st = status
 	co = checkout
-	co = checkout
 	br = branch
 	pr = pull --rebase
 	ltree = log --oneline --all --graph
+	sp = stash pop
+	sl = stash list
+	ss = "!f() { git stash show -p stash@{$1}; }; f"
+	sd = "!f() { git stash drop stash@{$1}; }; f"
+	conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
 
 [colors]
 	diff = auto
