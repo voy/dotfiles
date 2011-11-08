@@ -105,7 +105,7 @@ function! StripTrailingWhitespace()
 endfunction
 
 " FIXME: temporarily disabled trailing whitespace striping
-" autocmd BufWritePre *.py,*.html,*.js,*.css,*.json call StripTrailingWhitespace()
+autocmd BufWritePre *.py,*.html,*.js,*.scss,*.css,*.json call StripTrailingWhitespace()
 
 " saner autocompletion (behave more like shell)
 set wildmenu
