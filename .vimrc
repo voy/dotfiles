@@ -166,7 +166,7 @@ nmap <leader>q :q<CR>
 nmap <leader>nt :NERDTree<CR>
 nmap <leader>nw :set nowrap!<CR>
 
-noremap <leader>r :CommandTFlush<cr>
+noremap <leader>r :CommandTFlush<CR>
 
 " dot returns cursor back after command is repeated
 nmap . .`[

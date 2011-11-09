@@ -1,0 +1,6 @@
+function! GoToGDC()
+	cd ~/Sites/GDC/bear/client
+	CommandTFlush
+endfunction
+
+noremap <leader>gd :call GoToGDC()<CR>
