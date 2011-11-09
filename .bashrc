@@ -131,25 +131,8 @@ if [ -f ~/Work/drush/drush ]; then
 	alias drush='~/Work/drush/drush'
 fi
 
-WORKDIR=/home/voy/Work
+WORKDIR='~/Work'
 alias cdwork='cd $WORKDIR'
-
-# I3CZ
-
-alias list_instances_us='AWS_CREDENTIAL_FILE=~/.ec2/comoga.ini list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
-alias list_instances_eu='AWS_CREDENTIAL_FILE=~/.ec2/comoga.ini list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
-alias list_instances_us_bw='AWS_CREDENTIAL_FILE=~/.ec2/bidzwin.ini list_instances -r us-east-1 -H ID,T:Name,Hostname,IP,State'
-alias list_instances_eu_bw='AWS_CREDENTIAL_FILE=~/.ec2/bidzwin.ini list_instances -r eu-west-1 -H ID,T:Name,Hostname,IP,State'
-alias sshtunus='ssh -i /home/voy/.ssh/comoga-us.pem -R 8080:hg.malina:80'
-
-alias cdauction='cd $WORKDIR/auction/auction'
-alias cdaffil='cd $WORKDIR/affil/affil/'
-alias cdknitting='cd $WORKDIR/knitting'
-alias cdbidzwin='cd $WORKDIR/bidzwin/bidzwin'
-alias cdwestbids='cd $WORKDIR/bidzwin/bidzwin'
-alias cdcasharena='cd $WORKDIR/casharena/casharena'
-alias cdbonus='cd $WORKDIR/bonus/bonus'
-alias cdsolid='cd $WORKDIR/solid/solid'
 
 # custom compiled vim
 export PATH="$HOME/bin/vim/bin:/opt/vim/bin:$HOME/bin:$PATH"
@@ -172,15 +155,10 @@ export PYTHONSTARTUP="/home/voy/.pyrc"
 # on macos show colors in terminal
 export CLICOLOR=1
 
-if [ `hostname` = "vanderpool" ]; then
-	export GIT_AUTHOR_NAME='Vojtech Jasny'
-	export GIT_AUTHOR_EMAIL='vojtech.jasny@gooddata.com'
+if [ -r ~/bin/git-completion.bash ]; then
+	source ~/bin/git-completion.bash
 fi
 
 if [ -r ~/.bashrc.local ]; then
 	source ~/.bashrc.local
-fi
-
-if [ -r ~/bin/git-completion.bash ]; then
-	source ~/bin/git-completion.bash
 fi

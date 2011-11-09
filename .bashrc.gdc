@@ -1,6 +1,13 @@
 alias cdclient="cd $HOME/Sites/GDC/bear/client/html"
 alias delintize="find $HOME/Sites/GDC/bear/client/html/scripts -name '.lint.*' -delete"
 
+if [ `hostname` = "vanderpool" ]; then
+	export GIT_AUTHOR_NAME='Vojtech Jasny'
+	export GIT_AUTHOR_EMAIL='vojtech.jasny@gooddata.com'
+fi
+
+# gem install cdexec to get the required binary
+
 function vjs {
 	cdexec $HOME/Sites/GDC/bear/client - rake validate_js
 }
