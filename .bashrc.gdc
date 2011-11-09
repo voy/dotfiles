@@ -1,0 +1,14 @@
+alias cdclient="cd $HOME/Sites/GDC/bear/client/html"
+alias delintize="find $HOME/Sites/GDC/bear/client/html/scripts -name '.lint.*' -delete"
+
+function vjs {
+	cdexec $HOME/Sites/GDC/bear/client - rake validate_js
+}
+
+function gst {
+	cdexec $HOME/Sites/GDC/bear/client - rake generate_script_tags
+}
+
+function rsw {
+	cdexec $HOME/Sites/GDC/bear/client - rake sass-watch
+}
