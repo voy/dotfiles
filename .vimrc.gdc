@@ -4,3 +4,5 @@ function! GoToGDC()
 endfunction
 
 noremap <leader>gd :call GoToGDC()<CR>
+
+au BufRead,BufEnter ~/Sites/GDC/bear/client/html/test/*.html set ft=javascript

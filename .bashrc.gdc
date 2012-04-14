@@ -1,4 +1,11 @@
-alias cdclient="cd $HOME/Sites/GDC/bear/client/html"
+BEAR=/Users/voy/Sites/GDC/bear
+BEAR_CLIENT=$BEAR/client/html
+
+alias cdbear="cd $BEAR"
+alias cdclient="cd $BEAR_CLIENT"
+alias cdscripts="cd $BEAR_CLIENT/scripts"
+alias cdtests="cd $BEAR_CLIENT/test"
+
 alias delintize="find $HOME/Sites/GDC/bear/client/html/scripts -name '.lint.*' -delete"
 
 if [ `hostname` = "vanderpool" ]; then
@@ -8,8 +15,26 @@ fi
 
 # gem install cdexec to get the required binary
 
-function vjs {
-	cdexec $HOME/Sites/GDC/bear/client - rake validate_js
+function gst { 
+    cdexec $BEAR_CLIENT - drake --threads=8 generate_script_tags
+}
+
+function rsw { 
+    cdexec $BEAR_CLIENT - rake sass-watch
+}
+
+function sshpi { 
+    ssh root@$1.getgooddata.com
+}
+
+function viapache { 
+    sudo vi -c "set noreadonly" /etc/apache2/httpd.conf;
+    read -p "Restart apache? ";
+    [ "$REPLY" == 'y' ] && sudo apachectl restart
+}
+
+function vjs { 
+    cdexec $BEAR_CLIENT - drake --threads=8 validate_js | grep -v '\.lint\.'
 }
 
 function gst {
