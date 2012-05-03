@@ -33,6 +33,15 @@ function viapache {
     [ "$REPLY" == 'y' ] && sudo apachectl restart
 }
 
+function git-ccm {
+	git checkout $1
+	git pr
+	git cherry-pick master
+	git l origin/$1..
+	read -p "Commits above will now be pushed. Agree? ";
+	[ "$REPLY" == 'y' ] && git push
+}
+
 function vjs { 
     cdexec $BEAR_CLIENT - drake --threads=8 validate_js | grep -v '\.lint\.'
 }

@@ -35,7 +35,7 @@ set nolist
 noremap <silent> <F19> :set list!<CR>
 
 set t_Co=256 " number of colors
-colorscheme blacklight
+colorscheme molokai
 
 set cul " current row highlight
 set nu  " line numbering
