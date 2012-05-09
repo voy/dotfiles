@@ -1,0 +1,21 @@
+which ack-grep > /dev/null
+if [ $? -eq 0 ]; then
+	ACK_BINARY=`which ack-grep`
+else
+	ACK_BINARY=`which ack`
+fi
+
+# don't strip color control codes
+alias less='less -r'
+alias ack=$ACK_BINARY
+alias yuicompressor='java -jar ~/bin/yuicompressor.jar'
+alias df='df -h'
+alias du='du -h'
+alias ll='ls -alh'
+alias vim='vim -p'
+alias vi='vim -p'
+alias fname='find . -name'
+alias finame='find . -iname'
+
+WORKDIR='~/Work'
+alias cdwork='cd $WORKDIR'

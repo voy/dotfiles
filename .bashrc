@@ -111,31 +111,6 @@ if [ -f /usr/bin/most ]; then
 	export MANPAGER="/usr/bin/most -s"
 fi
 
-which ack-grep > /dev/null
-if [ $? -eq 0 ]; then
-	ACK_BINARY=`which ack-grep`
-else
-	ACK_BINARY=`which ack`
-fi
-
-# don't strip color control codes
-alias less='less -r'
-alias ack=$ACK_BINARY
-alias yuicompressor='java -jar ~/bin/yuicompressor.jar'
-alias df='df -h'
-alias du='du -h'
-alias ll='ls -alh'
-alias vim='vim -p'
-alias vi='vim -p'
-
-# alias for drupal shell
-if [ -f ~/Work/drush/drush ]; then
-	alias drush='~/Work/drush/drush'
-fi
-
-WORKDIR='~/Work'
-alias cdwork='cd $WORKDIR'
-
 # custom compiled vim
 export PATH="$HOME/bin/vim/bin:/opt/vim/bin:$HOME/bin:$PATH"
 
@@ -151,9 +126,6 @@ _pip_completion()
 complete -o default -F _pip_completion pip
 # pip bash completion end
 
-# autocompletion in python
-export PYTHONSTARTUP="/home/voy/.pyrc"
-
 # on macos show colors in terminal
 export CLICOLOR=1
 
@@ -164,3 +136,5 @@ fi
 if [ -r ~/.bashrc.local ]; then
 	source ~/.bashrc.local
 fi
+
+source ~/.bashrc.aliases
