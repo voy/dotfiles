@@ -1,0 +1,18 @@
+{
+	"browser": true,
+	"expr": true,
+	"jquery": true,
+	"predef":
+	[
+		"YUI", "Ember", "Em"
+	],
+    "asi": true,
+	"regexdash": true,
+	"strict": false,
+	"sub": true,
+	"undef": true,
+	"unused": true,
+	"supernew": true,
+	"devel": true,
+    "multistr": true,
+}

@@ -9,6 +9,8 @@
 	st = status
 	co = checkout
 	br = branch
+	bib = bisect bad
+	big = bisect good
 
 	# stash aliases
 	sp = stash pop
@@ -18,16 +20,20 @@
 
 	# neat stuff
 	l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
-	d = diff --color
+	d = diff
+	dc = diff --cached
 	pr = pull --rebase
 	ltree = log --oneline --all --graph
 	conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
+	# show differing commits against origin/<this-branch>
+	outgoing = "!f() { git l origin/$(git symbolic-ref HEAD 2> /dev/null | cut -f 3 -d\\/)..; }; f"
 
 [colors]
 	diff = auto
 	grep = auto
 	status = auto
-	ui = auto
+	ui = true
+	interactive = auto
 
 [apply]
 	whitespace = nowarn
@@ -40,3 +46,12 @@
 
 [instaweb]
 	httpd = webrick
+
+[browser "gitscm"]
+	cmd = /bin/sh -c 'open http://git-scm.com/docs/$(basename $1 .html)' --
+
+[help]
+	browser = gitscm
+
+[color]
+	ui = always

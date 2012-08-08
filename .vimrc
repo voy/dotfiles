@@ -24,7 +24,12 @@ set enc=utf-8  " vim encoding
 " status line
 set ruler
 set laststatus=2
+
 set statusline=%(%m\ %)%f%(\ %y%)%(\ [%{&fileencoding}]%)\ %{fugitive#statusline()}%=[%3b,%4(0x%B%)]\ %3c\ %4l\ /%5L\ %4P
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 set showcmd
 set mouse=a
 
@@ -189,3 +194,8 @@ endif
 
 " gui font
 set gfn=Monaco:h13
+
+" syntastic config
+let g:syntastic_enable_signs=1
+"let g:syntastic_auto_jump=1
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'

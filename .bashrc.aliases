@@ -8,10 +8,12 @@ fi
 # don't strip color control codes
 alias less='less -r'
 alias ack=$ACK_BINARY
+alias ackless='ack --pager="less -R"'
 alias yuicompressor='java -jar ~/bin/yuicompressor.jar'
 alias df='df -h'
 alias du='du -h'
 alias ll='ls -alh'
+alias l='ls -alh'
 alias vim='vim -p'
 alias vi='vim -p'
 alias fname='find . -name'
@@ -19,3 +21,9 @@ alias finame='find . -iname'
 
 WORKDIR='~/Work'
 alias cdwork='cd $WORKDIR'
+
+alias pubkeycp='pbcopy < ~/.ssh/id_rsa.pub'
+
+alias g='git'
+alias gs='git st'
+alias gd='git d'
