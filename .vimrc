@@ -53,6 +53,7 @@ filetype plugin on
 set autoindent
 
 " filetype specific configuration
+autocmd BufRead,BufNewFile *.ts set filetype=typescript
 autocmd BufRead,BufNewFile *.py set filetype=python
 autocmd BufRead,BufNewFile *.html set filetype=htmldjango
 
@@ -66,6 +67,7 @@ autocmd FileType css,scss set smarttab smartindent expandtab
 " no wrapping long lines in html
 autocmd FileType html,htmldjango set nowrap expandtab
 autocmd FileType javascript set nowrap expandtab
+autocmd FileType javascript,typescript set nowrap expandtab
 
 " wrap text at nearest space and show + at the beginning of the next line
 set showbreak=+
