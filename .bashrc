@@ -129,6 +129,8 @@ complete -o default -F _pip_completion pip
 # on macos show colors in terminal
 export CLICOLOR=1
 
+export LESS=-Ri
+
 if [ -r ~/bin/git-completion.bash ]; then
 	source ~/bin/git-completion.bash
 fi

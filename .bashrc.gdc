@@ -19,12 +19,8 @@ fi
 
 # gem install cdexec to get the required binary
 
-function gst { 
+function gentags { 
     cdexec $BEAR_CLIENT - drake --threads=8 generate_script_tags
-}
-
-function rsw { 
-    cdexec $BEAR_CLIENT - rake sass-watch
 }
 
 function sshpi { 
@@ -51,7 +47,7 @@ function vjs {
 }
 
 function gst {
-	cdexec $HOME/Sites/GDC/bear/client - rake generate_script_tags
+	cdexec $HOME/Sites/GDC/bear/client - drake --threads=8 generate_script_tags
 }
 
 function rsw {
