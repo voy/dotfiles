@@ -28,6 +28,9 @@
 	# show differing commits against origin/<this-branch>
 	outgoing = "!f() { git l origin/$(git symbolic-ref HEAD 2> /dev/null | cut -f 3 -d\\/)..; }; f"
 
+	bsb = bisect bad
+	bsg = bisect good
+
 [colors]
 	diff = auto
 	grep = auto
