@@ -1,0 +1,35 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"draw_white_space": "selection",
+	"font_size": 15.0,
+	"ignored_packages":
+	[
+	],
+	"jshint_options":
+	{
+		"browser": true,
+		"expr": true,
+		"jquery": true,
+		"predef":
+		[
+			"YUI",
+			"Ember",
+			"Em",
+			"chrome"
+		],
+		"regexdash": true,
+		"strict": false,
+		"sub": true,
+		"undef": true
+	},
+	"rulers":
+	[
+		120
+	],
+	"sublimelinter_delay": 2,
+	"tab_size": 4,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"vintage_ctrl_keys": true,
+	"vintage_start_in_command_mode": true
+}
