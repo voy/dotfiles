@@ -54,9 +54,14 @@ color_prompt=
 	fi
 fi
 
-function parse_git_branch {
+function parse_git {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    echo "("${ref#refs/heads/}")"
+    echo -n "(${ref#refs/heads/}"
+    st=$(git status 2>/dev/null | tail -n 1)
+	if [[ $st != "nothing to commit (working directory clean)" ]]; then
+		echo -n "*"
+	fi
+	echo -n ")"
 }
 
 WHITE="\[\033[00m\]"
@@ -65,9 +70,9 @@ BLUE="\[\033[01;34m\]"
 YELLOW="\[\033[0;33m\]"
 
 if [ "$color_prompt" = yes ]; then
-	PS1="$GREEN\u@\h:$BLUE\W$YELLOW \$(parse_git_branch)$WHITE\$ "
+	PS1="$GREEN\u@\h:$BLUE\W$YELLOW \$(parse_git)$WHITE\$ "
 else
-	PS1="\u@\h:\W \$(parse_git_branch)\$ "
+	PS1="\u@\h:\W \$(parse_git)\$ "
 fi
 unset color_prompt force_color_prompt
 
