@@ -124,6 +124,7 @@ set scrolloff=5
 
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
+let NERDTreeWinSize=40 
 
 " experimenting with hlsearch turned off
 " set hlsearch
@@ -174,6 +175,7 @@ nmap <leader>nt :NERDTree<CR>
 nmap <leader>nw :set nowrap!<CR>
 
 noremap <leader>r :CommandTFlush<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 
 " dot returns cursor back after command is repeated
 nmap . .`[

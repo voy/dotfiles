@@ -8,6 +8,8 @@
 	s = status
 	st = status
 	co = checkout
+	cp = cherry-pick
+	cherrypick = cherry-pick
 	br = branch
 	bib = bisect bad
 	big = bisect good

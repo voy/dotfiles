@@ -35,3 +35,7 @@ alias shjs='source-highlight -s javascript -f esc'
 function lsh {
 	LESSOPEN="| src-hilite-lesspipe.sh %s" less -R $1
 }
+
+function branch {
+	git rev-parse --abbrev-ref HEAD
+}

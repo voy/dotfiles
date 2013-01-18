@@ -1,5 +1,5 @@
 BEAR=/Users/voy/Sites/GDC/bear
-BEAR_CLIENT=$BEAR/client/html
+BEAR_CLIENT=/Users/voy/Work/gdc-client/html
 
 export NODE_PATH=/usr/local/lib/node_modules
 
@@ -16,6 +16,10 @@ if [ `hostname` = "vanderpool" ]; then
 	export GIT_AUTHOR_NAME='Vojtech Jasny'
 	export GIT_AUTHOR_EMAIL='vojtech.jasny@gooddata.com'
 fi
+
+function backend {
+	cat /etc/apache2/httpd.conf | grep -v '#' | grep 'ProxyPass /backend' | gsed -n 's/.*\https:\/\/\(.*\)\//\1/p'
+}
 
 # gem install cdexec to get the required binary
 
@@ -52,4 +56,8 @@ function gst {
 
 function rsw {
 	cdexec $HOME/Sites/GDC/bear/client - rake sass-watch
+}
+
+function winip {
+	ifconfig | grep 10\\\. | awk '/1/ {print $2}'
 }
