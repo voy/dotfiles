@@ -22,7 +22,7 @@
 
 	# neat stuff
 	l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
-	d = diff
+	d = diff --color=always
 	dc = diff --cached
 	pr = pull --rebase
 	ltree = log --oneline --all --graph
@@ -57,6 +57,3 @@
 
 [help]
 	browser = gitscm
-
-[color]
-	ui = always

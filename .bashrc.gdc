@@ -3,6 +3,8 @@ BEAR_CLIENT=/Users/voy/Work/gdc-client/html
 
 export NODE_PATH=/usr/local/lib/node_modules
 
+export PATH="$HOME/Work/gooddata-cli/bin:$PATH"
+
 alias cdbear="cd $BEAR"
 alias cdclient="cd $BEAR_CLIENT"
 alias cdc="cd $BEAR_CLIENT"
