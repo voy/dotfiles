@@ -30,6 +30,8 @@ alias gd='git d'
 alias gl='git l'
 alias gco='git co'
 
+which drake > /dev/null && alias rake=drake
+
 alias shjs='source-highlight -s javascript -f esc'
 
 function lsh {

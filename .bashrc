@@ -54,11 +54,12 @@ color_prompt=
 	fi
 fi
 
-function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\(\1$(parse_git_dirty)\)/"
-}
-function parse_git_dirty {
-    [[ $(git status -uno 2> /dev/null | tail -n1) == *"nothing to commit"* ]] || echo "*"
+function gitPrintInfo {
+	branchName=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+	if [[ -n $branchName ]]; then
+		[[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && dirty='*' || dirty=''
+		echo -n '('$branchName$dirty')'
+	fi
 }
 
 WHITE="\[\033[00m\]"
@@ -67,9 +68,9 @@ BLUE="\[\033[01;34m\]"
 YELLOW="\[\033[0;33m\]"
 
 if [ "$color_prompt" = yes ]; then
-	PS1="$GREEN\u@\h:$BLUE\W$YELLOW \$(parse_git_branch)$WHITE\$ "
+	PS1="$GREEN\u@\h:$BLUE\W$YELLOW \$(gitPrintInfo)$WHITE\$ "
 else
-	PS1="\u@\h:\W \$(parse_git_branch)\$ "
+	PS1="\u@\h:\W \$(gitPrintInfo)\$ "
 fi
 unset color_prompt force_color_prompt
 
@@ -140,5 +141,8 @@ fi
 if [ -r ~/.bashrc.local ]; then
 	source ~/.bashrc.local
 fi
+
+# use as many cores as possible
+export RAKEOPT='-j'
 
 source ~/.bashrc.aliases

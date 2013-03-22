@@ -1,16 +1,16 @@
-BEAR=/Users/voy/Sites/GDC/bear
-BEAR_CLIENT=/Users/voy/Work/gdc-client/html
+GDC_BEAR=/Users/voy/Sites/GDC/bear
+GDC_CLIENT=/Users/voy/Work/gdc-client/html
 
 export NODE_PATH=/usr/local/lib/node_modules
 
 export PATH="$HOME/Work/gooddata-cli/bin:$PATH"
 
-alias cdbear="cd $BEAR"
-alias cdclient="cd $BEAR_CLIENT"
-alias cdc="cd $BEAR_CLIENT"
-alias cdscripts="cd $BEAR_CLIENT/scripts"
-alias cds="cd $BEAR_CLIENT/scripts"
-alias cdtests="cd $BEAR_CLIENT/test"
+alias cdbear="cd $GDC_BEAR"
+alias cdclient="cd $GDC_CLIENT"
+alias cdc="cd $GDC_CLIENT"
+alias cdscripts="cd $GDC_CLIENT/scripts"
+alias cds="cd $GDC_CLIENT/scripts"
+alias cdtests="cd $GDC_CLIENT/test"
 
 alias delintize="find $HOME/Sites/GDC/bear/client/html/scripts -name '.lint.*' -delete"
 
@@ -19,45 +19,33 @@ if [ `hostname` = "vanderpool" ]; then
 	export GIT_AUTHOR_EMAIL='vojtech.jasny@gooddata.com'
 fi
 
-function backend {
-	cat /etc/apache2/httpd.conf | grep -v '#' | grep 'ProxyPass /backend' | gsed -n 's/.*\https:\/\/\(.*\)\//\1/p'
+function story-branch {
+	if [[ ! -n $1 ]]; then
+		echo "Usage: story-branch BRANCH_NAME"
+		return
+	fi
+	branchName="vj-"$(echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/^vj-//')
+	echo "Fetching \"gooddata\" remote and creating branch \"$branchName\" from gooddata/master"
+	git fetch gooddata
+	git co -b $branchName gooddata/master
 }
 
 # gem install cdexec to get the required binary
-
-function gentags { 
-    cdexec $BEAR_CLIENT - drake --threads=8 generate_script_tags
-}
 
 function sshpi { 
     ssh root@$1.getgooddata.com
 }
 
-function viapache { 
-    sudo vi -c "set noreadonly" /etc/apache2/httpd.conf;
-    read -p "Restart apache? ";
-    [ "$REPLY" == 'y' ] && sudo apachectl restart
-}
-
-function git-ccm {
-	git checkout $1
-	git pr
-	git cherry-pick master
-	git l origin/$1..
-	read -p "Commits above will now be pushed. Agree? ";
-	[ "$REPLY" == 'y' ] && git push
-}
-
 function vjs { 
-    cdexec $BEAR_CLIENT - drake --threads=8 validate_js | grep -v '\.lint\.'
+    cdexec $GDC_CLIENT - rake | grep -v '\.lint\.'
 }
 
 function gst {
-	cdexec $HOME/Sites/GDC/bear/client - drake --threads=8 generate_script_tags
+	cdexec $GDC_CLIENT - rake generate_script_tags
 }
 
 function rsw {
-	cdexec $HOME/Sites/GDC/bear/client - rake sass-watch
+	cdexec $GDC_CLIENT - rake sass-watch
 }
 
 function winip {
