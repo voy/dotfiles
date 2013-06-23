@@ -1,9 +1,12 @@
+export GDC_NICKNAME='vj'
+export GDC_ISSUE_PREFIX='gd'
+
 GDC_BEAR=/Users/voy/Sites/GDC/bear
 GDC_CLIENT=/Users/voy/Work/gdc-client/html
 
 export NODE_PATH=/usr/local/lib/node_modules
 
-export PATH="$HOME/Work/gooddata-cli/bin:$PATH"
+export PATH="$HOME/Work/gooddata-cli/bin:$HOME/Work/gdc-client/tools/grizzly/bin:$PATH"
 
 alias cdbear="cd $GDC_BEAR"
 alias cdclient="cd $GDC_CLIENT"
@@ -21,31 +24,19 @@ fi
 
 function story-branch {
 	if [[ ! -n $1 ]]; then
-		echo "Usage: story-branch BRANCH_NAME"
+		echo "Usage: story-branch [branch-name]"
 		return
 	fi
-	branchName="vj-"$(echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/^vj-//')
+
+	branchName=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+	# add gd- prefix if [branch-name] is numeric
+	branchName=$(echo $branchName | perl -ne 's/^([0-9]+)$/'$GDC_ISSUE_PREFIX'-$1/g; print')
+	# add vj- prefix if [branch-name] does not start with it
+	branchName=$(echo $branchName | perl -ne 's/^(?:'$GDC_NICKNAME'-)?(.*)/'$GDC_NICKNAME'-$1/; print $_')
+
 	echo "Fetching \"gooddata\" remote and creating branch \"$branchName\" from gooddata/master"
 	git fetch gooddata
 	git co -b $branchName gooddata/master
-}
-
-# gem install cdexec to get the required binary
-
-function sshpi { 
-    ssh root@$1.getgooddata.com
-}
-
-function vjs { 
-    cdexec $GDC_CLIENT - rake | grep -v '\.lint\.'
-}
-
-function gst {
-	cdexec $GDC_CLIENT - rake generate_script_tags
-}
-
-function rsw {
-	cdexec $GDC_CLIENT - rake sass-watch
 }
 
 function winip {

@@ -1,0 +1,18 @@
+function cdscripts { cd ~/Work/gdc-client/html/scripts }
+
+function story-branch {
+	if [[ ! -n $1 ]]; then
+		echo "Usage: story-branch [branch-name]"
+		return
+	fi
+
+	branchName=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+	# add gd- prefix if [branch-name] is numeric
+	branchName=$(echo $branchName | perl -ne 's/^([0-9]+)$/'$GDC_ISSUE_PREFIX'-$1/g; print')
+	# add vj- prefix if [branch-name] does not start with it
+	branchName=$(echo $branchName | perl -ne 's/^(?:'$GDC_NICKNAME'-)?(.*)/'$GDC_NICKNAME'-$1/; print $_')
+
+	echo "Fetching \"gooddata\" remote and creating branch \"$branchName\" from gooddata/master"
+	git fetch gooddata
+	git co -b $branchName gooddata/master
+}

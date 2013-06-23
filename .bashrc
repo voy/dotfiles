@@ -115,19 +115,9 @@ if [ -f /usr/bin/most ]; then
 fi
 
 # custom compiled vim
-export PATH="$HOME/bin/vim/bin:/opt/vim/bin:$HOME/bin:$PATH"
+export PATH="$HOME/bin/vim/bin:/opt/vim/bin:$HOME/bin:$PATH:$HOME/.rvm/bin"
 
 export EDITOR=vim
-
-# pip bash completion start
-_pip_completion()
-{
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 ) )
-}
-complete -o default -F _pip_completion pip
-# pip bash completion end
 
 # on macos show colors in terminal
 export CLICOLOR=1
@@ -146,3 +136,5 @@ fi
 export RAKEOPT='-j'
 
 source ~/.bashrc.aliases
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
