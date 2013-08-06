@@ -20,17 +20,19 @@ plugins=(git brew battery)
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zshrc.gdc
 
+# turn off all zsh autocorrections
+unsetopt correct_all
 unsetopt correct
 
 # Customize to your needs...
-export PATH=$PATH:/Users/voy/.rvm/gems/ruby-1.9.3-p392/bin:/Users/voy/.rvm/gems/ruby-1.9.3-p392@global/bin:/Users/voy/.rvm/rubies/ruby-1.9.3-p392/bin:/Users/voy/.rvm/bin:/Users/voy/Work/gooddata-cli/bin:/Users/voy/Work/gdc-client/tools/grizzly/bin:/Users/voy/bin/vim/bin:/opt/vim/bin:/Users/voy/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin
+export PATH=$PATH:/Users/voy/.rvm/gems/ruby-1.9.3-p392/bin:/Users/voy/.rvm/bin:/Users/voy/Work/gooddata-cli/bin:/Users/voy/Work/gdc-client/tools/grizzly/bin:/Users/voy/bin/vim/bin:/opt/vim/bin:/Users/voy/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin
 
 function prompt_char {
 	if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
 }
 
-local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
-PROMPT='${smiley} %(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%c)%{$reset_color%}%_$(prompt_char) '
+local checkmark="%(?,%{$fg[green]%}✓%{$reset_color%},%{$fg[red]%}✗%{$reset_color%})"
+PROMPT='${checkmark} %(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%c)%{$reset_color%}%_$(prompt_char) '
 RPROMPT='%{$fg_bold[yellow]%}$(git_prompt_info)%{$reset_color%} $(battery_pct_prompt)'
 
 function pubkeycp { pbcopy < ~/.ssh/id_rsa.pub }
@@ -50,3 +52,10 @@ alias vim='vim -p'
 alias vi='vim -p'
 alias fname='find . -name'
 alias finame='find . -iname'
+
+# set ruby version using rvm (if installed)
+RVM=$HOME/.rvm/scripts/rvm
+if [[ -f $RVM ]]; then
+    . $RVM
+	rvm use 1.9.3 &> /dev/null
+fi

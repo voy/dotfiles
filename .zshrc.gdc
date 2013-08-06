@@ -16,3 +16,11 @@ function story-branch {
 	git fetch gooddata
 	git co -b $branchName gooddata/master
 }
+
+function last-commit-message {
+	git l --format='%s' -1
+}
+
+function pull-request {
+	hub pull-request "$(last-commit-message)" $*
+}
