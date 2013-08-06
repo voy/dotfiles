@@ -1,4 +1,3 @@
-# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
 # Comment this out to disable bi-weekly auto-update checks
@@ -24,8 +23,11 @@ source $HOME/.zshrc.gdc
 unsetopt correct_all
 unsetopt correct
 
-# Customize to your needs...
-export PATH=$PATH:/Users/voy/.rvm/gems/ruby-1.9.3-p392/bin:/Users/voy/.rvm/bin:/Users/voy/Work/gooddata-cli/bin:/Users/voy/Work/gdc-client/tools/grizzly/bin:/Users/voy/bin/vim/bin:/opt/vim/bin:/Users/voy/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin
+# rvm
+PATH=$PATH:$HOME/.rvm/gems/ruby-1.9.3-p392/bin:$HOME/.rvm/bin
+# custom vim installations
+PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
+PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin
 
 function prompt_char {
 	if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
@@ -35,7 +37,7 @@ local checkmark="%(?,%{$fg[green]%}✓%{$reset_color%},%{$fg[red]%}✗%{$reset_c
 PROMPT='${checkmark} %(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%c)%{$reset_color%}%_$(prompt_char) '
 RPROMPT='%{$fg_bold[yellow]%}$(git_prompt_info)%{$reset_color%} $(battery_pct_prompt)'
 
-function pubkeycp { pbcopy < ~/.ssh/id_rsa.pub }
+function pubkeycp { pbcopy < $HOME/.ssh/id_rsa.pub }
 
 # use as many cores as possible
 export RAKEOPT='-j'

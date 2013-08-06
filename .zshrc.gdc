@@ -1,4 +1,6 @@
-function cdscripts { cd ~/Work/gdc-client/html/scripts }
+PATH=$PATH:$HOME/Work/gooddata-cli/bin:$HOME/Work/gdc-client/tools/grizzly/bin
+
+function cdscripts { cd $HOME/Work/gdc-client/html/scripts }
 
 function story-branch {
 	if [[ ! -n $1 ]]; then
