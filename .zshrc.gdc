@@ -2,6 +2,9 @@ PATH=$PATH:$HOME/Work/gooddata-cli/bin:$HOME/Work/gdc-client/tools/grizzly/bin
 
 function cdscripts { cd $HOME/Work/gdc-client/html/scripts }
 
+export GDC_NICKNAME='vj'
+export GDC_ISSUE_PREFIX='cl'
+
 function story-branch {
 	if [[ ! -n $1 ]]; then
 		echo "Usage: story-branch [branch-name]"
@@ -25,4 +28,12 @@ function last-commit-message {
 
 function pull-request {
 	hub pull-request "$(last-commit-message)" $*
+}
+
+function winip {
+	ifconfig | grep 10\\\. | awk '/1/ {print $2}'
+}
+
+function selenium-server {
+	java -jar ~/bin/selenium-server-standalone-2.33.0.jar -p 4444 2>&1 | tee server.log
 }

@@ -5,10 +5,8 @@
 
 [alias]
 	# shorthands
-	s = status
-	st = status
+	st = status -sb
 	co = checkout
-	cp = cherry-pick
 	cherrypick = cherry-pick
 	br = branch
 	bib = bisect bad
