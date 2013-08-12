@@ -5,6 +5,13 @@ function cdscripts { cd $HOME/Work/gdc-client/html/scripts }
 export GDC_NICKNAME='vj'
 export GDC_ISSUE_PREFIX='cl'
 
+function gdc-remote {
+    git remote -v | \
+        grep gooddata/gdc-client.git | \
+        head -1 | \
+        perl -ne 'print $1 if /([a-z]+)\s/i'
+}
+
 function story-branch {
 	if [[ ! -n $1 ]]; then
 		echo "Usage: story-branch [branch-name]"
@@ -17,9 +24,11 @@ function story-branch {
 	# add vj- prefix if [branch-name] does not start with it
 	branchName=$(echo $branchName | perl -ne 's/^(?:'$GDC_NICKNAME'-)?(.*)/'$GDC_NICKNAME'-$1/; print $_')
 
-	echo "Fetching \"gooddata\" remote and creating branch \"$branchName\" from gooddata/master"
-	git fetch gooddata
-	git co -b $branchName gooddata/master
+	gdcRemote=$(gdc-remote)
+
+	echo "Fetching \"$gdcRemote\" remote and creating branch \"$branchName\" from gdc/master"
+	git fetch $gdcRemote
+	git co -b $branchName $gdcRemote/master
 }
 
 function last-commit-message {
