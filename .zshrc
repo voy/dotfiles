@@ -29,7 +29,7 @@ PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
 PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin
 
 function git_prompt {
-	git_prompt_info | sed 's/git://'
+    git_prompt_info | sed 's/git://'
 }
 
 local smiley="%(?,%{$fg[green]%}✓%{$reset_color%},%{$fg[red]%}✗%{$reset_color%})"
@@ -72,23 +72,23 @@ function last-commit-message {
 }
 
 function pull-request {
-	hub pull-request "$(last-commit-message)" $@
+    hub pull-request "$(last-commit-message)" $@
 }
 
 # set ruby version using rvm (if installed)
 RVM=$HOME/.rvm/scripts/rvm
 if [[ -f $RVM ]]; then
     . $RVM
-	rvm use 1.9.3 &> /dev/null
+    rvm use 1.9.3 &> /dev/null
 fi
 
 # ctrl-z lets you enter another command and then finish typing the first command
 fancy-ctrl-z () {
     if [[ $#BUFFER -eq 0 ]]; then
         bg
-		zle redisplay
-	else
-		zle push-input
+        zle redisplay
+    else
+        zle push-input
     fi
 }
 zle -N fancy-ctrl-z
