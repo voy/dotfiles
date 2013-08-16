@@ -1,57 +1,62 @@
 [user]
-	# overridden for other environments by env variables
-	name = "Vojtech Jasny"
-	email = "voy@voy.cz"
+    # overridden for other environments by env variables
+    name = "Vojtech Jasny"
+    email = "voy@voy.cz"
 
 [alias]
-	# shorthands
-	st = status -sb
-	co = checkout
-	cherrypick = cherry-pick
-	br = branch
-	bib = bisect bad
-	big = bisect good
+    # shorthands
+    st = status -sb
+    co = checkout
+    cherrypick = cherry-pick
+    br = branch
+    bib = bisect bad
+    big = bisect good
 
-	# stash aliases
-	sp = stash pop
-	sl = stash list
-	ss = "!f() { git stash show -p stash@{$1}; }; f"
-	sd = "!f() { git stash drop stash@{$1}; }; f"
+    # stash aliases
+    sp = stash pop
+    sl = stash list
+    ss = "!f() { git stash show -p stash@{$1}; }; f"
+    sd = "!f() { git stash drop stash@{$1}; }; f"
 
-	# neat stuff
-	l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
-	d = diff --color=always
-	dc = diff --cached
-	pr = pull --rebase
-	ltree = log --oneline --all --graph
-	conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
-	# show differing commits against origin/<this-branch>
-	outgoing = "!f() { git l origin/$(git symbolic-ref HEAD 2> /dev/null | cut -f 3 -d\\/)..; }; f"
+    # neat stuff
+    l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
+    d = diff --color=always
+    dc = diff --cached
+    pr = pull --rebase
+    ltree = log --oneline --all --graph
+    conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
+    # show differing commits against origin/<this-branch>
+    outgoing = "!f() { git l origin/$(git symbolic-ref HEAD 2> /dev/null | cut -f 3 -d\\/)..; }; f"
 
-	bsb = bisect bad
-	bsg = bisect good
+    bsb = bisect bad
+    bsg = bisect good
+
+    fresh-branches = for-each-ref --format='%(refname:short)' --sort=-committerdate --count 30 refs/heads/
+
+    cherry-pick-previous = cherry-pick @{-1}
 
 [colors]
-	diff = auto
-	grep = auto
-	status = auto
-	ui = true
-	interactive = auto
+    diff = auto
+    grep = auto
+    status = auto
+    ui = true
+    interactive = auto
 
 [apply]
-	whitespace = nowarn
+    whitespace = nowarn
 
 [core]
-	pager = less -FXRS
+    pager = less -FXRS
+    ignorecase = false
 
 [push]
-	default = upstream # only push current branch
+    default = upstream # only push current branch
 
 [instaweb]
-	httpd = webrick
+    httpd = webrick
 
 [browser "gitscm"]
-	cmd = /bin/sh -c 'open http://git-scm.com/docs/$(basename $1 .html)' --
+    cmd = /bin/sh -c 'open http://git-scm.com/docs/$(basename $1 .html)' --
 
 [help]
-	browser = gitscm
+    browser = gitscm

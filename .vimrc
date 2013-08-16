@@ -13,7 +13,7 @@ set history=1000 " longer history of searches and commands
 " default indent is tab equal to 4 spaces
 set shiftwidth=4
 set tabstop=4
-set noexpandtab
+set expandtab
 
 set showmatch " show pair braces when typing
 
