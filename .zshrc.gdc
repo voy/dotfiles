@@ -1,9 +1,17 @@
 PATH=$PATH:$HOME/Work/gooddata-cli/bin:$HOME/Work/gdc-client/tools/grizzly/bin
 
-cdscripts() { cd $HOME/Work/gdc-client/html/scripts }
+export GOODSTRAP_PATH=$HOME/Work/gdc-goodstrap
+export DDA_PATH=$HOME/Work/gdc-dda
+export CLIENT_PATH=$HOME/Work/gdc-client
+
+cdscripts() { cd $CLIENT_PATH/html/scripts }
+cdclient() { cd $CLIENT_PATH }
+cddda() { cd $DDA_PATH }
+cdgoodstrap() { cd $GOODSTRAP_PATH }
 
 export GDC_NICKNAME='vj'
 export GDC_ISSUE_PREFIX='cl'
+export FREEIPA_USER='vojtech.jasny'
 
 gdc-remote() {
     git remote -v | \
@@ -12,23 +20,33 @@ gdc-remote() {
         perl -ne 'print $1 if /([a-z]+)\s/i'
 }
 
+update-goodstrap() {
+    cd $GOODSTRAP_PATH
+    grunt dist
+    cp $GOODSTRAP_PATH/dist/goodstrap.js $CLIENT_PATH/html/lib/GoodStrap/GoodStrap.js
+    cp $GOODSTRAP_PATH/dist/goodstrap-silver.css $CLIENT_PATH/html/lib/GoodStrap/GoodStrap-silver.css
+    popd
+}
+
 story-branch() {
 	if [[ ! -n $1 ]]; then
 		echo "Usage: story-branch [branch-name]"
 		return
 	fi
 
-	branchName=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+	branchName=$(echo "$1" |tr '[:upper:]' '[:lower:]')
 	# add gd- prefix if [branch-name] is numeric
-	branchName=$(echo $branchName | perl -ne 's/^([0-9]+)$/'$GDC_ISSUE_PREFIX'-$1/g; print')
+	branchName=$(echo $branchName |perl -ne 's/^([0-9]+)$/'$GDC_ISSUE_PREFIX'-$1/g; print')
 	# add vj- prefix if [branch-name] does not start with it
-	branchName=$(echo $branchName | perl -ne 's/^(?:'$GDC_NICKNAME'-)?(.*)/'$GDC_NICKNAME'-$1/; print $_')
+	branchName=$(echo $branchName |perl -ne 's/^(?:'$GDC_NICKNAME'-)?(.*)/'$GDC_NICKNAME'-$1/; print $_')
 
 	gdcRemote=$(gdc-remote)
 
-	echo "Fetching \"$gdcRemote\" remote and creating branch \"$branchName\" from $gdcRemote/master"
+    branchFrom=develop
+
+	echo "Fetching \"$gdcRemote\" remote and creating branch \"$branchName\" from $gdcRemote/$branchFrom"
 	git fetch $gdcRemote
-	git co -b $branchName $gdcRemote/master
+	git checkout -b $branchName $gdcRemote/$branchFrom
 }
 
 last-commit-message() {
@@ -36,28 +54,43 @@ last-commit-message() {
 }
 
 pull-request() {
-	hub pull-request "$(last-commit-message)" $*
+    hub pull-request -m "$(last-commit-message)" $*
 }
 
-#function pull-request-magic {
-#    local version=$(git rev-parse --abbrev-ref HEAD | perl -ne 'print $1 if /[0-9]+-([0-9]+)$/')
-#    if [[ $version ]]; then
-#        local branch="stable-$version"
-#    else
-#        local branch="master"
-#    fi
-#    echo $branch
-#    #pull-request -b gooddata:
-#}
-
 winip() {
-	ifconfig | grep 10\\\. | awk '/1/ {print $2}'
+    ifconfig |awk '/inet 10\./ { print $2 }' |pbcopy
 }
 
 selenium-server() {
-	java -jar ~/bin/selenium-server-standalone-2.33.0.jar -p 4444 2>&1 | tee server.log
+    local seleniumJar=$(find /usr/local/opt/selenium-server-standalone/ -name 'selenium-server-standalone-*.jar')
+    java -jar $seleniumJar -p 4444 2>&1 |tee server.log
 }
 
-crackpin() {
-    pdfcrack -c 0123456789 -n 4 $*
+payroll() {
+    f=$(find ~/Downloads -iname 'v??platn*' |xargs ls -1t |head -1)
+    pdfcrack -c 0123456789 -n 4 "$f" |awk '/^found/ { gsub(/'\''/, "", $3); printf $3 }' |pbcopy
+    open $f
 }
+
+client-demo-ssh() {
+    ssh $FREEIPA_USER@client-demo.na.intgdc.com
+}
+
+client-demo-list() {
+    ssh -tq $FREEIPA_USER@client-demo.na.intgdc.com sudo \$HOME/lsdemos.pl
+}
+
+client-demo-stop() {
+    if ! [[ "$1" =~ '^[0-9]+$' ]]; then
+        echo "Usage: client-demo-stop PID"
+        return
+    fi
+
+    ssh -tq $FREEIPA_USER@client-demo.na.intgdc.com sudo kill $1
+
+    if [[ $? -eq 0 ]]; then
+        echo "Done!"
+    fi
+}
+
+alias client-demo-deploy="$HOME/Work/gdc-client-utils/scp-dist.sh"

@@ -162,16 +162,14 @@ noremap <silent> <F12> :set nunumber!<CR>
 imap <F10> <ESC>:set paste!<CR>a
 imap <F12> <ESC>:set nunumber!<CR>a
 
-" quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>wv :so $MYVIMRC<CR>
-
 " some leader shortcuts for common commands
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 
 nmap <leader>nt :NERDTree<CR>
 nmap <leader>nw :set nowrap!<CR>
+
+noremap <leader>t :CtrlP<CR>
 
 noremap <leader>r :CommandTFlush<CR>
 noremap <leader>n :NERDTreeToggle<CR>
@@ -200,5 +198,8 @@ set gfn=Monaco:h13
 
 " syntastic config
 let g:syntastic_enable_signs=1
-"let g:syntastic_auto_jump=1
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
+let g:ctrlp_match_window = 'bottom,order:ttb,max:20'
+" don't load the whole git repo
+let g:ctrlp_working_path_mode = 'a'

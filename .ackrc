@@ -1,3 +1,4 @@
 --smart-case
 --type-add=css=.scss
 --type-set=typescript=.ts
+--type-set=handlebars=.hbs

@@ -19,16 +19,21 @@ source $HOME/.zshrc.gdc
 unsetopt correct_all
 unsetopt correct
 
+# don't show env variable names in directory prompt
+unsetopt auto_name_dirs
+
 # cd always behaves as pushd
 setopt autopushd
 
+# run git from homebrew, not the system one
+PATH=/usr/local/bin:$PATH
 # rvm
 PATH=$PATH:$HOME/.rvm/gems/ruby-1.9.3-p392/bin:$HOME/.rvm/bin
 # custom vim locations
 PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
-PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin
+PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
-function git_prompt {
+git_prompt() {
     git_prompt_info | sed 's/git://'
 }
 
@@ -36,10 +41,11 @@ local smiley="%(?,%{$fg[green]%}✓%{$reset_color%},%{$fg[red]%}✗%{$reset_colo
 PROMPT='${smiley} %(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%c)/%{$reset_color%}» '
 RPROMPT='%{$fg_bold[yellow]%}$(git_prompt)%{$reset_color%} $(battery_pct_prompt)'
 
-function pubkeycp { pbcopy < $HOME/.ssh/id_rsa.pub }
+pubkeycp() { pbcopy < $HOME/.ssh/id_rsa.pub }
 
 # use as many cores as possible in rake
 alias rake=drake
+alias cal='gcal -s Mon'
 export RAKEOPT='-j'
 
 export EDITOR=vim

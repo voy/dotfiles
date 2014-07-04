@@ -1,7 +1,7 @@
 [user]
     # overridden for other environments by env variables
-    name = "Vojtech Jasny"
-    email = "voy@voy.cz"
+    name = Vojtech Jasny
+    email = vojtech.jasny@gooddata.com
 
 [alias]
     # shorthands
@@ -21,17 +21,10 @@
     # neat stuff
     l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
     d = diff --color=always
-    dc = diff --cached
     pr = pull --rebase
-    ltree = log --oneline --all --graph
     conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
-    # show differing commits against origin/<this-branch>
-    outgoing = "!f() { git l origin/$(git symbolic-ref HEAD 2> /dev/null | cut -f 3 -d\\/)..; }; f"
 
-    bsb = bisect bad
-    bsg = bisect good
-
-    fresh-branches = for-each-ref --format='%(refname:short)' --sort=-committerdate --count 30 refs/heads/
+    recent-branches = "!f() { git for-each-ref --format='%(refname:short)' --sort=-committerdate --count 15 refs/heads/ | tail -r; }; f"
 
     cherry-pick-previous = cherry-pick @{-1}
 
@@ -47,7 +40,6 @@
 
 [core]
     pager = less -FXRS
-    ignorecase = false
 
 [push]
     default = upstream # only push current branch
