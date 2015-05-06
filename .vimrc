@@ -177,9 +177,8 @@ noremap <leader>n :NERDTreeToggle<CR>
 " dot returns cursor back after command is repeated
 nmap . .`[
 
-" using jj/jk is easier to type than ESC or C-[ for leaving insert mode
+" using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
-inoremap jk <ESC>
 
 let g:CommandTMaxFiles=20000
 
