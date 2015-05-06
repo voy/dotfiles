@@ -27,8 +27,6 @@ setopt autopushd
 
 # run git from homebrew, not the system one
 PATH=/usr/local/bin:$PATH
-# rvm
-PATH=$PATH:$HOME/.rvm/gems/ruby-1.9.3-p392/bin:$HOME/.rvm/bin
 # custom vim locations
 PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
 PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
@@ -106,3 +104,5 @@ zle -N edit-command-line
 bindkey '^Xe' edit-command-line
 
 alias cdwork="cd $HOME/Work"
+
+alias cld=client-demo

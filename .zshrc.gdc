@@ -3,11 +3,13 @@ PATH=$PATH:$HOME/Work/gooddata-cli/bin:$HOME/Work/gdc-client/tools/grizzly/bin
 export GOODSTRAP_PATH=$HOME/Work/gdc-goodstrap
 export DDA_PATH=$HOME/Work/gdc-dda
 export CLIENT_PATH=$HOME/Work/gdc-client
+export INDIGO_PATH=$HOME/Work/gdc-indigo-reporter
 
-cdscripts() { cd $CLIENT_PATH/html/scripts }
-cdclient() { cd $CLIENT_PATH }
-cddda() { cd $DDA_PATH }
+cdscripts()   { cd $CLIENT_PATH/html/scripts }
+cdclient()    { cd $CLIENT_PATH }
+cddda()       { cd $DDA_PATH }
 cdgoodstrap() { cd $GOODSTRAP_PATH }
+cdindigo()    { cd $INDIGO_PATH }
 
 export GDC_NICKNAME='vj'
 export GDC_ISSUE_PREFIX='cl'
@@ -54,7 +56,11 @@ last-commit-message() {
 }
 
 pull-request() {
-    hub pull-request -m "$(last-commit-message)" $*
+    hub pull-request -m "$(last-commit-message)" $@
+}
+
+prd() {
+    pull-request -b gooddata:develop
 }
 
 winip() {
@@ -68,29 +74,27 @@ selenium-server() {
 
 payroll() {
     f=$(find ~/Downloads -iname 'v??platn*' |xargs ls -1t |head -1)
+    echo $f
+    #return
     pdfcrack -c 0123456789 -n 4 "$f" |awk '/^found/ { gsub(/'\''/, "", $3); printf $3 }' |pbcopy
     open $f
 }
 
-client-demo-ssh() {
-    ssh $FREEIPA_USER@client-demo.na.intgdc.com
-}
+open-coverage() {
+    coverage_base="$INDIGO_PATH/base/coverage/html/"
+    coverage_dir="$coverage_base$(ls -t1 "$coverage_base" | head -n 1)"
 
-client-demo-list() {
-    ssh -tq $FREEIPA_USER@client-demo.na.intgdc.com sudo \$HOME/lsdemos.pl
-}
 
-client-demo-stop() {
-    if ! [[ "$1" =~ '^[0-9]+$' ]]; then
-        echo "Usage: client-demo-stop PID"
-        return
+    if [[ -z "$1" ]]; then
+        open "$coverage_dir/index.html"
+    else
+        search_filename="$1.js.html"
+        coverage_file=$(find "$coverage_dir" -name "$search_filename")
+        open "$coverage_file"
     fi
 
-    ssh -tq $FREEIPA_USER@client-demo.na.intgdc.com sudo kill $1
-
-    if [[ $? -eq 0 ]]; then
-        echo "Done!"
-    fi
 }
 
-alias client-demo-deploy="$HOME/Work/gdc-client-utils/scp-dist.sh"
+e2e() {
+    grunt test --type=e2e $@
+}

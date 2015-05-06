@@ -2,3 +2,4 @@
 --type-add=css=.scss
 --type-set=typescript=.ts
 --type-set=handlebars=.hbs
+--ignore-file=ext:hbs.js

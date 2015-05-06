@@ -19,7 +19,8 @@
     sd = "!f() { git stash drop stash@{$1}; }; f"
 
     # neat stuff
-    l = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
+    l  = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
+    sl = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]' -15
     d = diff --color=always
     pr = pull --rebase
     conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
@@ -43,12 +44,11 @@
 
 [push]
     default = upstream # only push current branch
-
-[instaweb]
-    httpd = webrick
-
-[browser "gitscm"]
-    cmd = /bin/sh -c 'open http://git-scm.com/docs/$(basename $1 .html)' --
-
-[help]
-    browser = gitscm
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true

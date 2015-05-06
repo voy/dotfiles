@@ -177,8 +177,9 @@ noremap <leader>n :NERDTreeToggle<CR>
 " dot returns cursor back after command is repeated
 nmap . .`[
 
-" using jj is easier to type than ESC or C-[ for leaving insert mode
+" using jj/jk is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
+inoremap jk <ESC>
 
 let g:CommandTMaxFiles=20000
 
@@ -203,3 +204,4 @@ let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 let g:ctrlp_match_window = 'bottom,order:ttb,max:20'
 " don't load the whole git repo
 let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
