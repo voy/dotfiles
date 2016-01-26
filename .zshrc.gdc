@@ -1,5 +1,7 @@
 PATH=$PATH:$HOME/Work/gooddata-cli/bin:$HOME/Work/gdc-client/tools/grizzly/bin
 
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
 export GOODSTRAP_PATH=$HOME/Work/gdc-goodstrap
 export DDA_PATH=$HOME/Work/gdc-dda
 export CLIENT_PATH=$HOME/Work/gdc-client
@@ -95,6 +97,22 @@ open-coverage() {
 
 }
 
-e2e() {
-    grunt test --type=e2e $@
+toes6() {
+    amdtoes6 "$1" | sponge "$1"
+}
+
+sec-dev() {
+    grunt dev
+}
+
+s1d() {
+    grunt dev --backend=staging.intgdc.com
+}
+
+s2d() {
+    grunt dev --backend=staging2.intgdc.com
+}
+
+s3d() {
+    grunt dev --backend=staging3.intgdc.com
 }

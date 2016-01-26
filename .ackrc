@@ -2,4 +2,5 @@
 --type-add=css=.scss
 --type-set=typescript=.ts
 --type-set=handlebars=.hbs
---ignore-file=ext:hbs.js
+--ignore-file=match:\.(es6|hbs)\.js$
+--ignore-file=match:\.js\.map$

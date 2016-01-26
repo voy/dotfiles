@@ -10,7 +10,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew battery git-flow)
+plugins=(git brew battery zshmarks)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zshrc.gdc
@@ -30,6 +30,7 @@ PATH=/usr/local/bin:$PATH
 # custom vim locations
 PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
 PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+PATH=$PATH:/opt/apache-maven-3.3.9/bin
 
 git_prompt() {
     git_prompt_info | sed 's/git://'
@@ -59,6 +60,8 @@ alias vi='vim -p'
 alias fname='find . -name'
 alias finame='find . -iname'
 
+alias j='jump'
+
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -75,7 +78,7 @@ function last-commit-message {
     git log --format=%s -n 1
 }
 
-function pull-request {
+function pull-req {
     hub pull-request "$(last-commit-message)" $@
 }
 
@@ -106,3 +109,14 @@ bindkey '^Xe' edit-command-line
 alias cdwork="cd $HOME/Work"
 
 alias cld=client-demo
+
+ulimit -n 4096
+
+lock() {
+    /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+}
+
+setTerminalTitle() {
+    DISABLE_AUTO_TITLE='true';
+    echo -ne "\e]1;$1\a"
+}

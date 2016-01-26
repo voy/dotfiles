@@ -52,6 +52,7 @@ filetype plugin on
 set autoindent
 
 " filetype specific configuration
+autocmd BufRead,BufNewFile *.es6 set filetype=javascript
 autocmd BufRead,BufNewFile *.ts set filetype=typescript
 autocmd BufRead,BufNewFile *.py set filetype=python
 autocmd BufRead,BufNewFile *.html set filetype=htmldjango
@@ -111,12 +112,12 @@ function! StripTrailingWhitespace()
 endfunction
 
 " FIXME: temporarily disabled trailing whitespace striping
-autocmd BufWritePre *.py,*.html,*.js,*.scss,*.css,*.json call StripTrailingWhitespace()
+autocmd BufWritePre *.py,*.html,*.js,*.jsx,*.es6,*.hbs,*.scss,*.css,*.json call StripTrailingWhitespace()
 
 " saner autocompletion (behave more like shell)
 set wildmenu
-set wildmode=list:longest
-set wildignore=*.pyc,*.jpg,*.gif,*png,*.pdf,*.o,*.so
+set wildmode=longest,list,full
+set wildignore=*.pyc,*.jpg,*.gif,*.png,*.pdf,*.o,*.,*.hbs.js,*.js.map,*.es6.js
 
 " keep more context when scrolling (3 lines behind cursor)
 set scrolloff=5
@@ -198,9 +199,12 @@ set gfn=Monaco:h13
 
 " syntastic config
 let g:syntastic_enable_signs=1
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 
 let g:ctrlp_match_window = 'bottom,order:ttb,max:20'
 " don't load the whole git repo
 let g:ctrlp_working_path_mode = 'a'
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_Store\|git'
+
+nmap <silent> <leader>d <Plug>DashSearch
