@@ -1,4 +1,0 @@
-"/usr/bin/xvkbd -xsendevent -text "\[BackSpace]""
-  m:0x0 + b:8
-"/usr/bin/xvkbd -xsendevent -text "\[Alt_L]\[Right]""
-  m:0x0 + b:9

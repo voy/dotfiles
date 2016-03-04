@@ -8,15 +8,6 @@
     st = status
     co = checkout
     cherrypick = cherry-pick
-    br = branch
-    bib = bisect bad
-    big = bisect good
-
-    # stash aliases
-    sp = stash pop
-    sl = stash list
-    ss = "!f() { git stash show -p stash@{$1}; }; f"
-    sd = "!f() { git stash drop stash@{$1}; }; f"
 
     # neat stuff
     l  = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
@@ -26,8 +17,6 @@
     conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
 
     recent-branches = "!f() { git for-each-ref --format='%(refname:short)' --sort=-committerdate --count 15 refs/heads/ | tail -r; }; f"
-
-    cherry-pick-previous = cherry-pick @{-1}
 
 [colors]
     diff = auto
@@ -44,10 +33,12 @@
 
 [push]
     default = upstream # only push current branch
+
 [filter "media"]
 	clean = git media clean %f
 	smudge = git media smudge %f
 	required = true
+
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f

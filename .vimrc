@@ -124,7 +124,7 @@ set scrolloff=5
 
 " hide pyc files from NERDTree dialogs and autocompletion
 let NERDTreeIgnore=['.*\.pyc$']
-let NERDTreeWinSize=40 
+let NERDTreeWinSize=40
 
 " experimenting with hlsearch turned off
 " set hlsearch
@@ -189,11 +189,6 @@ hi clear CursorLine
 " custom snippets for snipmate
 let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate/snippets/"
 
-" load site-specific configuration
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
 " gui font
 set gfn=Monaco:h13
 
@@ -206,5 +201,3 @@ let g:ctrlp_match_window = 'bottom,order:ttb,max:20'
 " don't load the whole git repo
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_Store\|git'
-
-nmap <silent> <leader>d <Plug>DashSearch
