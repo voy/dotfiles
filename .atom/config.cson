@@ -1,0 +1,41 @@
+"*":
+  "atom-beautify":
+    _analyticsUserId: "f8b9af64-f7f7-4879-b109-4bf8c0860576"
+  core:
+    ignoredNames: [
+      ".git"
+      ".svn"
+      ".DS_Store"
+    ]
+    projectHome: "/Users/voy/Work"
+    themes: [
+      "atom-dark-ui"
+      "monokai"
+    ]
+  editor:
+    invisibles: {}
+    scrollPastEnd: true
+    tabLength: 4
+    tabType: "soft"
+  "exception-reporting":
+    userId: "2426a6a6-5fc1-645e-0629-acd8ff97416e"
+  linter:
+    errorPanelHeight: 161
+    showErrorInline: false
+    underlineIssues: false
+  "linter-eslint":
+    disableWhenNoEslintConfig: false
+  metrics:
+    userId: "9283260a32660142767120bd13210e8499575fd0"
+  react: {}
+  "release-notes":
+    viewedVersion: "0.94.0"
+  tabs:
+    usePreviewTabs: true
+  "tree-view": {}
+  "vim-mode":
+    useSmartcaseForSearch: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
