@@ -7,12 +7,6 @@ export DDA_PATH=$HOME/Work/gdc-dda
 export CLIENT_PATH=$HOME/Work/gdc-client
 export INDIGO_PATH=$HOME/Work/gdc-indigo-reporter
 
-cdscripts()   { cd $CLIENT_PATH/html/scripts }
-cdclient()    { cd $CLIENT_PATH }
-cddda()       { cd $DDA_PATH }
-cdgoodstrap() { cd $GOODSTRAP_PATH }
-cdindigo()    { cd $INDIGO_PATH }
-
 export GDC_NICKNAME='vj'
 export GDC_ISSUE_PREFIX='cl'
 export FREEIPA_USER='vojtech.jasny'
@@ -57,12 +51,8 @@ last-commit-message() {
 	git l --format='%s' -1
 }
 
-pull-request() {
+ghpr() {
     hub pull-request -m "$(last-commit-message)" $@
-}
-
-prd() {
-    pull-request -b gooddata:develop
 }
 
 winip() {

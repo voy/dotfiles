@@ -42,11 +42,6 @@ RPROMPT='%{$fg_bold[yellow]%}$(git_prompt)%{$reset_color%} $(battery_pct_prompt)
 
 pubkeycp() { pbcopy < $HOME/.ssh/id_rsa.pub }
 
-# use as many cores as possible in rake
-alias rake=drake
-alias cal='gcal -s Mon'
-export RAKEOPT='-j'
-
 export EDITOR=vim
 export CLICOLOR=1
 
@@ -57,8 +52,6 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias vim='vim -p'
 alias vi='vim -p'
-alias fname='find . -name'
-alias finame='find . -iname'
 
 alias j='jump'
 
@@ -68,7 +61,7 @@ export LC_ALL=en_US.UTF-8
 
 # speed up git autocompletion
 __git_files () {
-    _wanted files expl 'local files' _files   
+    _wanted files expl 'local files' _files
 }
 
 bindkey "^P" up-line-or-search
@@ -120,3 +113,6 @@ setTerminalTitle() {
     DISABLE_AUTO_TITLE='true';
     echo -ne "\e]1;$1\a"
 }
+
+export NVM_DIR=~/.nvm
+. $(brew --prefix nvm)/nvm.sh
