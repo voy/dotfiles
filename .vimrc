@@ -1,5 +1,18 @@
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tomasr/molokai'
+
+call vundle#end()
+filetype plugin indent on
+
 set nocompatible
-call pathogen#runtime_append_all_bundles()
 
 let mapleader=","
 
