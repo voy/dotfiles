@@ -5,7 +5,7 @@ FILES=".atom .ackrc .bookmarks .gitconfig .npmrc .vim .vimrc .zshrc .zshrc.gdc .
 
 for FILE in $FILES; do
     if [[ ! -e "$HOME/$FILE" ]]; then
-        ln -s "$SCRIPT_PATH/$FILE" "$HOME/$FILE"
+        ln -s "$HOME/$SCRIPT_PATH/$FILE" "$HOME/$FILE"
         echo "Linked $FILE"
     else
         echo "Already exists: $FILE"

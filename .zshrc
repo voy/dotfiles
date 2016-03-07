@@ -71,38 +71,6 @@ function last-commit-message {
     git log --format=%s -n 1
 }
 
-function pull-req {
-    hub pull-request "$(last-commit-message)" $@
-}
-
-# set ruby version using rvm (if installed)
-RVM=$HOME/.rvm/scripts/rvm
-if [[ -f $RVM ]]; then
-    . $RVM
-    rvm use 1.9.3 &> /dev/null
-fi
-
-# ctrl-z lets you enter another command and then finish typing the first command
-fancy-ctrl-z () {
-    if [[ $#BUFFER -eq 0 ]]; then
-        bg
-        zle redisplay
-    else
-        zle push-input
-    fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-# ctrl-X-e edits command in $EDITOR
-autoload edit-command-line
-zle -N edit-command-line
-bindkey '^Xe' edit-command-line
-
-alias cdwork="cd $HOME/Work"
-
-alias cld=client-demo
-
 ulimit -n 4096
 
 lock() {

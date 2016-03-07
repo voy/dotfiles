@@ -1,51 +1,4 @@
-PATH=$PATH:$HOME/Work/gooddata-cli/bin:$HOME/Work/gdc-client/tools/grizzly/bin
-
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-
-export GOODSTRAP_PATH=$HOME/Work/gdc-goodstrap
-export DDA_PATH=$HOME/Work/gdc-dda
-export CLIENT_PATH=$HOME/Work/gdc-client
-export INDIGO_PATH=$HOME/Work/gdc-indigo-reporter
-
-export GDC_NICKNAME='vj'
-export GDC_ISSUE_PREFIX='cl'
-export FREEIPA_USER='vojtech.jasny'
-
-gdc-remote() {
-    git remote -v | \
-        grep gooddata/gdc-client.git | \
-        head -1 | \
-        perl -ne 'print $1 if /([a-z]+)\s/i'
-}
-
-update-goodstrap() {
-    cd $GOODSTRAP_PATH
-    grunt dist
-    cp $GOODSTRAP_PATH/dist/goodstrap.js $CLIENT_PATH/html/lib/GoodStrap/GoodStrap.js
-    cp $GOODSTRAP_PATH/dist/goodstrap-silver.css $CLIENT_PATH/html/lib/GoodStrap/GoodStrap-silver.css
-    popd
-}
-
-story-branch() {
-	if [[ ! -n $1 ]]; then
-		echo "Usage: story-branch [branch-name]"
-		return
-	fi
-
-	branchName=$(echo "$1" |tr '[:upper:]' '[:lower:]')
-	# add gd- prefix if [branch-name] is numeric
-	branchName=$(echo $branchName |perl -ne 's/^([0-9]+)$/'$GDC_ISSUE_PREFIX'-$1/g; print')
-	# add vj- prefix if [branch-name] does not start with it
-	branchName=$(echo $branchName |perl -ne 's/^(?:'$GDC_NICKNAME'-)?(.*)/'$GDC_NICKNAME'-$1/; print $_')
-
-	gdcRemote=$(gdc-remote)
-
-    branchFrom=develop
-
-	echo "Fetching \"$gdcRemote\" remote and creating branch \"$branchName\" from $gdcRemote/$branchFrom"
-	git fetch $gdcRemote
-	git checkout -b $branchName $gdcRemote/$branchFrom
-}
 
 last-commit-message() {
 	git l --format='%s' -1
@@ -53,10 +6,6 @@ last-commit-message() {
 
 ghpr() {
     hub pull-request -m "$(last-commit-message)" $@
-}
-
-winip() {
-    ifconfig |awk '/inet 10\./ { print $2 }' |pbcopy
 }
 
 selenium-server() {
@@ -72,37 +21,6 @@ payroll() {
     open $f
 }
 
-open-coverage() {
-    coverage_base="$INDIGO_PATH/base/coverage/html/"
-    coverage_dir="$coverage_base$(ls -t1 "$coverage_base" | head -n 1)"
-
-
-    if [[ -z "$1" ]]; then
-        open "$coverage_dir/index.html"
-    else
-        search_filename="$1.js.html"
-        coverage_file=$(find "$coverage_dir" -name "$search_filename")
-        open "$coverage_file"
-    fi
-
-}
-
 toes6() {
     amdtoes6 "$1" | sponge "$1"
-}
-
-sec-dev() {
-    grunt dev
-}
-
-s1d() {
-    grunt dev --backend=staging.intgdc.com
-}
-
-s2d() {
-    grunt dev --backend=staging2.intgdc.com
-}
-
-s3d() {
-    grunt dev --backend=staging3.intgdc.com
 }

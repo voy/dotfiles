@@ -30,9 +30,10 @@ set expandtab
 
 set showmatch " show pair braces when typing
 
-set tenc=utf-8 " terminal encoding
-set fenc=utf-8 " file encoding
-set enc=utf-8  " vim encoding
+set fileencodings=ucs-bom,utf8,prc
+set termencoding=utf-8
+set fileencoding=utf-8
+set encoding=utf-8
 
 " status line
 set ruler
@@ -54,8 +55,7 @@ noremap <silent> <F19> :set list!<CR>
 set t_Co=256 " number of colors
 colorscheme molokai
 
-set cul " current row highlight
-set nu  " line numbering
+set number  " line numbering
 
 " load my ftplugins etc. - commented out, breaks my indentation
 " filetype plugin indent on
@@ -96,10 +96,6 @@ set backupdir=~/tmp
 set directory=~/tmp,/tmp,. " directories for swap files
 set confirm " confirm :q! etc.
 
-hi User1 guibg=white guifg=blue
-hi User2 guibg=white guifg=red
-hi spellbad ctermbg=88
-hi clear Underlined
 " allow backspaces to eat indents, end-of-line/beginning-of-line characters
 set backspace=indent,eol,start
 
