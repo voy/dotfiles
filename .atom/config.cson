@@ -1,4 +1,6 @@
 "*":
+  Zen:
+    width: 120
   "atom-beautify":
     _analyticsUserId: "f8b9af64-f7f7-4879-b109-4bf8c0860576"
   core:
@@ -27,6 +29,7 @@
     disableWhenNoEslintConfig: false
   metrics:
     userId: "9283260a32660142767120bd13210e8499575fd0"
+  minimap: {}
   react: {}
   "release-notes":
     viewedVersion: "0.94.0"

@@ -1,0 +1,17 @@
+Zen
+atom-beautify
+auto-detect-indentation
+es6-javascript
+ex-mode
+file-icons
+git-diff-details
+git-history
+linter
+linter-eslint
+minimap
+monokai
+pigments
+react
+seti-ui
+vim-mode
+

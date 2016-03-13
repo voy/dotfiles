@@ -1,0 +1,10 @@
+ack
+findutils
+git
+gnu-sed
+neovim
+nvm
+terminal-notifier
+tmux
+watch
+wget
