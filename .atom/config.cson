@@ -16,6 +16,7 @@
     ]
   editor:
     invisibles: {}
+    preferredLineLength: 120
     scrollPastEnd: true
     tabLength: 4
     tabType: "soft"

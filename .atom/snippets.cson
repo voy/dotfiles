@@ -13,3 +13,19 @@
 #     'prefix': 'log'
 #     'body': 'console.log $1'
 #
+
+'.source.js':
+  "describe":
+    prefix: "desc"
+    body: """
+    describe('${1:description}', () => {
+    \t${0}
+    });
+    """
+  "it synchronous":
+    prefix: "its"
+    body: """
+    it('${1:description}', () => {
+    \t${0}
+    });
+    """
