@@ -1,7 +1,6 @@
 [user]
-    # overridden for other environments by env variables
     name = Vojtech Jasny
-    email = vojtech.jasny@gooddata.com
+    email = voy@voy.cz
 
 [alias]
     # shorthands
@@ -33,13 +32,3 @@
 
 [push]
     default = upstream # only push current branch
-
-[filter "media"]
-	clean = git media clean %f
-	smudge = git media smudge %f
-	required = true
-
-[filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true

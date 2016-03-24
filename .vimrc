@@ -91,9 +91,6 @@ set incsearch
 set ignorecase
 set smartcase
 
-set backup
-set backupdir=~/tmp
-set directory=~/tmp,/tmp,. " directories for swap files
 set confirm " confirm :q! etc.
 
 " allow backspaces to eat indents, end-of-line/beginning-of-line characters
