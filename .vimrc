@@ -1,3 +1,5 @@
+set shell=/bin/sh
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -8,6 +10,7 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
 filetype plugin indent on
