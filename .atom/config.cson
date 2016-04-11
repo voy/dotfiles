@@ -9,7 +9,7 @@
       ".svn"
       ".DS_Store"
     ]
-    projectHome: "/Users/voy/Work"
+    projectHome: "~/Work"
     themes: [
       "atom-dark-ui"
       "monokai"
