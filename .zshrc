@@ -13,7 +13,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git brew battery zshmarks)
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.zshrc.gdc
+source $HOME/.zshrc.aws
 
 # turn off all zsh autocorrections
 unsetopt correct_all
@@ -74,7 +74,7 @@ function last-commit-message {
 ulimit -n 4096
 
 lock() {
-    /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+    open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app
 }
 
 setTerminalTitle() {
