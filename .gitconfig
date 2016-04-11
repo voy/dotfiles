@@ -1,14 +1,11 @@
 [user]
-    name = Vojtech Jasny
-    email = voy@voy.cz
+    useConfigOnly = true
 
 [alias]
-    # shorthands
     st = status
     co = checkout
     cherrypick = cherry-pick
 
-    # neat stuff
     l  = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
     sl = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]' -15
     d = diff --color=always
@@ -17,11 +14,14 @@
 
     recent-branches = "!f() { git for-each-ref --format='%(refname:short)' --sort=-committerdate --count 15 refs/heads/ | tail -r; }; f"
 
+    home = "!f() { git config user.email 'voy@voy.cz'; git config user.name 'Vojtech Jasny'; }; f"
+    work = "!f() { git config user.email 'jasny@amazon.com'; git config user.name 'Vojtech Jasny'; }; f"
+
 [colors]
+    ui = true
     diff = auto
     grep = auto
     status = auto
-    ui = true
     interactive = auto
 
 [apply]
@@ -32,3 +32,7 @@
 
 [push]
     default = upstream # only push current branch
+
+[amazon]
+	append-cr-url = true
+	pull-request-by-default = true
