@@ -1,13 +1,15 @@
 # Dotfiles
 
-Welcome to my dotfiles repo. Feel free to browse!
+Welcome to my dotfiles repo. Feel free to take a look around.
 
 ## Instructions
 
-### Symlink dotfiles
+### Symlinks
 
 Run `install.sh` to symlink files specified in `$FILES` to their respective
-counterparts in `$HOME`. This requires `coreutils` to be install via `brew`.
+counterparts in `$HOME`.
+
+This requires `coreutils` to be installed via `brew`.
 
 ### Editor plugins
 
