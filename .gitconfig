@@ -30,9 +30,6 @@
 [core]
     pager = less -FXRS
 
-[push]
-    default = upstream # only push current branch
-
 [amazon]
 	append-cr-url = true
 	pull-request-by-default = true
