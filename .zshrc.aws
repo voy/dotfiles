@@ -1,3 +1,7 @@
 export AWS_ACCOUNT_ID="470829360833"
 
 eval "$(rbenv init -)"
+
+run-charlie-console() {
+    brazil build -f local-build.xml console-start
+}
