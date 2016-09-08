@@ -1,4 +1,7 @@
-" using jj is easier to type than ESC or C-[ for leaving insert mode
-inoremap jj <ESC>
+imap jj <ESC>
 
-set ignorecase smartcase
+set ignorecase
+set smartcase
+
+" dot returns cursor back after command is repeated
+nmap . .`[
