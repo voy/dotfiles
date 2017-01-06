@@ -1,7 +1,35 @@
 export AWS_ACCOUNT_ID="470829360833"
 
-eval "$(rbenv init -)"
+CONSUMABLES_PATH=""
+
+for f in SDETools envImprovement AmazonAwsCli OdinTools; do
+    if [[ -d /apollo/env/$f ]]; then
+        CONSUMABLES_PATH=$CONSUMABLES_PATH:/apollo/env/$f/bin
+    fi
+done
+
+export PATH=$CONSUMABLES_PATH:$PATH
+
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+
+if which rbenv &> /dev/null; then
+    eval "$(rbenv init -)"
+fi
 
 run-charlie-console() {
     brazil build -f local-build.xml console-start
 }
+
+alias bb=brazil-build
+alias bba='brazil-build apollo-pkg'
+alias bbr='brazil-build release'
+alias bre='brazil-runtime-exec'
+alias brc='brazil-recursive-cmd'
+alias bws='brazil ws'
+alias bwsuse='bws use --gitMode -p'
+alias bwscreate='bws create -n'
+alias brc=brazil-recursive-cmd
+alias bbr='brc brazil-build'
+alias bball='brc --allPackages'
+alias bbb='brc --allPackages brazil-build'
+alias bbra='bbr apollo-pkg'
