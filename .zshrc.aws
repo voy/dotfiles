@@ -2,7 +2,7 @@ export AWS_ACCOUNT_ID="470829360833"
 
 CONSUMABLES_PATH=""
 
-for f in SDETools envImprovement AmazonAwsCli OdinTools; do
+for f in SDETools envImprovement AmazonAwsCli OdinTools BrazilThirdPartyTool OctaneBrazilTools; do
     if [[ -d /apollo/env/$f ]]; then
         CONSUMABLES_PATH=$CONSUMABLES_PATH:/apollo/env/$f/bin
     fi
