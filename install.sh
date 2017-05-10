@@ -1,7 +1,9 @@
 #!/bin/bash
 
 SCRIPT_PATH=$(dirname $0)
-FILES=".atom .ackrc .bookmarks .gitconfig .npmrc .vim .vimrc .zshrc .zshrc.aws .editorconfig .ideavimrc"
+FILES=".atom .ackrc .bookmarks .gitconfig .npmrc .vim .vimrc .zshrc .zshrc.aws .editorconfig .ideavimrc .gitignore_global"
+
+mkdir -p "$HOME/.vimtmp"
 
 for FILE in $FILES; do
     SYMLINK="$HOME/$FILE"

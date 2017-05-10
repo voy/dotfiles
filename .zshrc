@@ -31,9 +31,6 @@ PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
 PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 PATH=$PATH:/opt/apache-maven-3.3.9/bin
 
-# after path has been set in order to set apollo consumed envs binaries as first on the PATH
-source $HOME/.zshrc.aws
-
 git_prompt() {
     git_prompt_info | sed 's/git://'
 }
@@ -86,6 +83,8 @@ setTerminalTitle() {
 
 export NVM_DIR=~/.nvm
 
-if [ -x "$(command -v nvm)" ] && [ -x "$(command -v brew)" ]; then
+if [ -x "$(command -v brew)" ]; then
     . $(brew --prefix nvm)/nvm.sh
 fi
+
+source $HOME/.zshrc.aws

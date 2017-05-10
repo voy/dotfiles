@@ -4,12 +4,16 @@
   "atom-beautify":
     _analyticsUserId: "f8b9af64-f7f7-4879-b109-4bf8c0860576"
   core:
+    disabledPackages: [
+      "linter-eslint"
+    ]
     ignoredNames: [
       ".git"
       ".svn"
       ".DS_Store"
     ]
     projectHome: "~/Work"
+    telemetryConsent: "no"
     themes: [
       "atom-dark-ui"
       "monokai"
@@ -19,9 +23,11 @@
     preferredLineLength: 120
     scrollPastEnd: true
     tabLength: 4
-    tabType: "soft"
   "exception-reporting":
     userId: "2426a6a6-5fc1-645e-0629-acd8ff97416e"
+  "git-plus":
+    general:
+      _analyticsUserId: "62ff4c96-e1ef-49b5-a712-643cfcaa2af0"
   linter:
     errorPanelHeight: 161
     showErrorInline: false
@@ -43,3 +49,18 @@
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
+".ini.source":
+  editor:
+    preferredLineLength: 120
+".js.regexp.replacement.source":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4
+".js.regexp.source":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4
+".js.source":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4

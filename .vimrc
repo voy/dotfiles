@@ -10,6 +10,7 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
+Plugin 'leafgarland/typescript-vim'
 
 " for Chaplin development, otherwise not needed
 Plugin 'kchmck/vim-coffee-script'
@@ -24,10 +25,11 @@ let mapleader=","
 
 syntax on
 
-set history=1000 " longer history of searches and commands
+set directory=~/.vimtmp
 
-" remember undo and stuff when I close buffers
-" set hidden
+set tabpagemax=20
+
+set history=1000 " longer history of searches and commands
 
 " default indent is tab equal to 4 spaces
 set shiftwidth=4
@@ -61,7 +63,8 @@ noremap <silent> <F19> :set list!<CR>
 set t_Co=256 " number of colors
 colorscheme molokai
 
-set number  " line numbering
+" line numbering
+set number
 
 " load my ftplugins etc. - commented out, breaks my indentation
 " filetype plugin indent on
@@ -72,13 +75,12 @@ set autoindent
 
 " filetype specific configuration
 autocmd BufRead,BufNewFile *.es6 set filetype=javascript
-autocmd BufRead,BufNewFile *.ts set filetype=typescript
+autocmd BufRead,BufNewFile *.ts set filetype=javascript
+autocmd BufRead,BufNewFile *.tsx set filetype=javascript
 autocmd BufRead,BufNewFile *.py set filetype=python
 autocmd BufRead,BufNewFile *.html set filetype=htmldjango
 
 " python specific indentation settings
-autocmd FileType python set expandtab tabstop=4 smarttab smartindent
-autocmd FileType python set autoindent softtabstop=4 shiftwidth=4
 autocmd FileType python set cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 autocmd FileType css,scss set smarttab smartindent expandtab
@@ -105,45 +107,17 @@ set backspace=indent,eol,start
 set foldmethod=indent
 set nofoldenable
 
-" remove trailing whitespace from code files on save
-function! StripTrailingWhitespace()
-
-  " store current cursor location
-  silent exe "normal mq<CR>"
-  " store the current search value
-  let saved_search = @/
-
-  " delete the whitespace (e means don't warn if pattern not found)
-  %s/\s\+$//e
-
-  " restore old cursor location
-  silent exe "normal `q<CR>"
-  " restore the search value
-  let @/ = saved_search
-
-endfunction
-
-" FIXME: temporarily disabled trailing whitespace striping
-autocmd BufWritePre *.py,*.html,*.js,*.jsx,*.es6,*.hbs,*.scss,*.css,*.json call StripTrailingWhitespace()
-
 " saner autocompletion (behave more like shell)
 set wildmenu
 set wildmode=longest,list,full
 set wildignore=*.pyc,*.jpg,*.gif,*.png,*.pdf,*.o,*.,*.hbs.js,*.js.map,*.es6.js
 
-" keep more context when scrolling (3 lines behind cursor)
+" keep more context when scrolling (5 lines behind cursor)
 set scrolloff=5
-
-" hide pyc files from NERDTree dialogs and autocompletion
-let NERDTreeIgnore=['.*\.pyc$']
-let NERDTreeWinSize=40
 
 " experimenting with hlsearch turned off
 " set hlsearch
 nnoremap <CR> :noh<CR><CR> " clear search highlight on enter
-
-" w!! asks for root password and saves as root
-cmap w!! %!sudo tee > /dev/null %
 
 " keyboard mappings
 
@@ -169,23 +143,18 @@ noremap <C-K> :tabnext<CR>
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 set pastetoggle=<F10>
-noremap <silent> <F11> :set hlsearch!<CR>
-noremap <silent> <F12> :set nunumber!<CR>
 
 imap <F10> <ESC>:set paste!<CR>a
-imap <F12> <ESC>:set nunumber!<CR>a
 
 " some leader shortcuts for common commands
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 
-nmap <leader>nt :NERDTree<CR>
 nmap <leader>nw :set nowrap!<CR>
 
 noremap <leader>t :CtrlP<CR>
 
 noremap <leader>r :CommandTFlush<CR>
-noremap <leader>n :NERDTreeToggle<CR>
 
 " dot returns cursor back after command is repeated
 nmap . .`[
@@ -193,21 +162,11 @@ nmap . .`[
 " using jj is easier to type than ESC or C-[ for leaving insert mode
 inoremap jj <ESC>
 
-let g:CommandTMaxFiles=20000
-
 " no cursor line underline
 hi clear CursorLine
 
-" custom snippets for snipmate
-let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate/snippets/"
-
 " gui font
 set gfn=Monaco:h13
-
-" syntastic config
-let g:syntastic_enable_signs=1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 
 let g:ctrlp_match_window = 'bottom,order:ttb,max:20'
 " don't load the whole git repo

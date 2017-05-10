@@ -8,6 +8,7 @@
 
     l  = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
     sl = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]' -15
+    changelog = log --format='* `%h` %s'
     d = diff --color=always
     pr = pull --rebase
     conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
@@ -16,6 +17,10 @@
 
     home = "!f() { git config user.email 'voy@voy.cz'; git config user.name 'Vojtech Jasny'; }; f"
     work = "!f() { git config user.email 'jasny@amazon.com'; git config user.name 'Vojtech Jasny'; }; f"
+    dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+
+    root = rev-parse --show-toplevel
+    exec = "!exec "
 
 [colors]
     ui = true
@@ -29,7 +34,26 @@
 
 [core]
     pager = less -FXRS
+    excludesfile = /Users/jasny/.gitignore_global
 
 [amazon]
-	append-cr-url = true
-	pull-request-by-default = true
+    append-cr-url = true
+    pull-request-by-default = false
+    sensible = false
+
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+
+[color]
+    ui = auto
+
+[push]
+    default = simple
+
+[commit]
+    template = /Users/jasny/.stCommitMsg
