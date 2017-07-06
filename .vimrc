@@ -11,6 +11,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
 
 " for Chaplin development, otherwise not needed
 Plugin 'kchmck/vim-coffee-script'

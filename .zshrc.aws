@@ -20,6 +20,7 @@ run-charlie-console() {
     brazil build -f local-build.xml console-start
 }
 
+alias b=brazil
 alias bb=brazil-build
 alias bba='brazil-build apollo-pkg'
 alias bbr='brazil-build release'
@@ -37,3 +38,15 @@ alias bbra='bbr apollo-pkg'
 if [ -x "$(command -v nvm)" ] ; then
     export NODE_BINARY_PATH=$(nvm which sky)
 fi
+
+wj() {
+    OUT=$(find-package-in-workspace "$1")
+
+    if [[ $OUT && $? = 0 ]]; then
+        cd "$OUT";
+    else
+        echo $OUT
+    fi
+}
+
+alias default-cr='cr --publish --reviewers posix:aramis-dev'

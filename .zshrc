@@ -13,6 +13,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git brew battery zshmarks)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/dotfiles/z.sh
 
 # turn off all zsh autocorrections
 unsetopt correct_all
@@ -35,8 +36,8 @@ git_prompt() {
     git_prompt_info | sed 's/git://'
 }
 
-local smiley="%(?,%{$fg[green]%}✓%{$reset_color%},%{$fg[red]%}✗%{$reset_color%})"
-PROMPT='${smiley} %(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%c)/%{$reset_color%}» '
+local smiley="%(?,%{$fg[green]%}:)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
+PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%c)%{$reset_color%} ${smiley} '
 RPROMPT='%{$fg_bold[yellow]%}$(git_prompt)%{$reset_color%} $(battery_pct_prompt)'
 
 pubkeycp() { pbcopy < $HOME/.ssh/id_rsa.pub }
@@ -51,8 +52,10 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias vim='vim -p'
 alias vi='vim -p'
-
-alias j='jump'
+alias v='vim -p'
+alias g='git'
+alias n='npm'
+alias zr='z -r'
 
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
