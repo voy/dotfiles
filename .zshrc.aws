@@ -12,14 +12,6 @@ export PATH=$CONSUMABLES_PATH:$PATH
 
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 
-if which rbenv &> /dev/null; then
-    eval "$(rbenv init -)"
-fi
-
-run-charlie-console() {
-    brazil build -f local-build.xml console-start
-}
-
 alias b=brazil
 alias bb=brazil-build
 alias bba='brazil-build apollo-pkg'
@@ -35,18 +27,6 @@ alias bball='brc --allPackages'
 alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
 
-if [ -x "$(command -v nvm)" ] ; then
-    export NODE_BINARY_PATH=$(nvm which sky)
-fi
-
-wj() {
-    OUT=$(find-package-in-workspace "$1")
-
-    if [[ $OUT && $? = 0 ]]; then
-        cd "$OUT";
-    else
-        echo $OUT
-    fi
-}
+export NODE_BINARY_PATH="/Users/jasny/.nvm/versions/node/v6.3.0/bin/node"
 
 alias default-cr='cr --publish --reviewers posix:aramis-dev'
