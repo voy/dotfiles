@@ -27,6 +27,9 @@ alias bball='brc --allPackages'
 alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
 
-export NODE_BINARY_PATH="/Users/jasny/.nvm/versions/node/v6.3.0/bin/node"
+alias default-cr='cr --publish --reviewers team:aramis'
 
-alias default-cr='cr --publish --reviewers posix:aramis-dev'
+if [ -x "$(command -v nvm)" ] ; then
+    export NODE_BINARY_PATH=$(nvm which sky)
+fi
+
