@@ -18,7 +18,6 @@ found an equivalent tool, so you need to periodically snapshot installed
 packages using `update-atom-packages.sh` and install them manually using
 `install-atom-packages.sh`.
 
-### ZSHmarks
+### fzf
 
-    cd ~/.oh-my-zsh/custom/plugins
-    git clone https://github.com/jocelynmallon/zshmarks.git
+Install `fzf-zsh` from [GitHub](https://github.com/Wyntau/fzf-zsh).
