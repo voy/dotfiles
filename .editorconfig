@@ -8,5 +8,11 @@ indent_size = 4
 trim_trailing_whitespace = true
 insert_final_newline = false
 
+[*.rb]
+indent_size = 2
+
 [package.json]
+indent_size = 2
+
+[Rakefile]
 indent_size = 2
