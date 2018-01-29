@@ -10,7 +10,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew battery zshmarks)
+plugins=(git brew battery fzf-zsh)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/dotfiles/z.sh
@@ -90,4 +90,19 @@ if [ -x "$(command -v brew)" ]; then
     . $(brew --prefix nvm)/nvm.sh
 fi
 
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 source $HOME/.zshrc.aws
+
+daily-log() {
+    local root="$HOME/Documents/notes"
+    local markdown=$(date +'%Y-%m-%d.md')
+    local markdown_path="$root/$markdown"
+
+    if [[ ! -f $markdown_path ]]; then
+        echo "# Log for $(date +'%d.%m.%Y')\n\n" > $markdown_path
+    fi
+
+    macdown "$markdown_path"
+}

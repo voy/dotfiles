@@ -33,3 +33,7 @@ if [ -x "$(command -v nvm)" ] ; then
     export NODE_BINARY_PATH=$(nvm which sky)
 fi
 
+update-brazil() {
+  curl --fail --negotiate -fLSsu: https://drive.corp.amazon.com/view/BrazilCLI-2.0/install-mac.sh -o /tmp/install-mac.sh && bash /tmp/install-mac.sh
+}
+
