@@ -15,6 +15,7 @@ This requires `coreutils` to be installed via `brew`.
 
 For vim plugins I use Vundle (run `:PluginInstall`).
 
-### fzf
+### ZSH custom plugins
 
-Install `fzf-zsh` from [GitHub](https://github.com/Wyntau/fzf-zsh).
+* Install `fzf-zsh` from [GitHub](https://github.com/Wyntau/fzf-zsh).
+* Install `zsh-nvm` from [GitHub](https://github.com/lukechilds/zsh-nvm) (has `nvm.sh` lazy loading support).
