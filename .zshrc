@@ -52,10 +52,6 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias vim='vim -p'
 alias vi='vim -p'
-alias v='vim -p'
-alias g='git'
-alias n='npm'
-alias zr='z -r'
 
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -66,6 +62,7 @@ __git_files () {
     _wanted files expl 'local files' _files
 }
 
+bindkey "^U" backward-kill-line
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 
@@ -76,13 +73,24 @@ lock() {
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+generate-daily-log-template() {
+    echo "# Weekly log"
+    echo
+
+    local monday=$1
+
+    for i in `seq 0 4`; do
+      gdate -d"$monday+$i days" "+## %A %d.%m.%Y"
+      echo
+    done
+}
+
 daily-log() {
-    local root="$HOME/Documents/notes"
-    local markdown=$(date +'%Y-%m-%d.md')
-    local markdown_path="$root/$markdown"
+    local monday=$(gdate -d"this-monday" "+%Y-%m-%d")
+    local markdown_path="$HOME/Documents/notes/$monday.md"
 
     if [[ ! -f $markdown_path ]]; then
-        echo "# Log for $(date +'%d.%m.%Y')\n\n" > $markdown_path
+        generate-daily-log-template $monday > $markdown_path
     fi
 
     macdown "$markdown_path"
