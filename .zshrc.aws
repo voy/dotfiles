@@ -41,3 +41,18 @@ update-brazil() {
         -o /tmp/install-mac.sh && bash /tmp/install-mac.sh
 }
 
+open-code() {
+    # take first argument or use current directory
+    local input=$([[ -f $1 || -d $1 ]] && echo "$1" || echo ".")
+    # convert input to absolute path
+    local abs_input_path=$(node -p -r path -e 'path.resolve("'$input'")')
+    # normalize input to a directory where input is residing
+    local dir=$([[ -d $input ]] && echo $abs_input_path || dirname "$abs_input_path")
+
+    local package_root=$(cd "$dir" && findup Config)
+    local package_name=$(basename "$package_root")
+    local relative_path=${abs_input_path#$package_root}
+    local url="https://code.amazon.com/packages/$package_name/trees/mainline/--$relative_path"
+
+    open "$url"
+}
