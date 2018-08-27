@@ -19,3 +19,6 @@ indent_size = 2
 
 [~/.gitconfig]
 indent_size = 4
+
+[**/Config]
+indent_size = 4

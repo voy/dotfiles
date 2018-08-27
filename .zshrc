@@ -52,6 +52,7 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias vim='vim -p'
 alias vi='vim -p'
+alias c='code .'
 
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -67,7 +68,7 @@ bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 
 lock() {
-    open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app
+    echo "No, no. Use Alfred."
 }
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
@@ -86,7 +87,7 @@ generate-daily-log-template() {
 }
 
 daily-log() {
-    local monday=$(gdate -d"this-monday" "+%Y-%m-%d")
+    local monday=$(date -v -Mon "+%Y-%m-%d")
     local markdown_path="$HOME/Documents/notes/$monday.md"
 
     if [[ ! -f $markdown_path ]]; then

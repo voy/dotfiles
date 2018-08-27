@@ -1,7 +1,7 @@
 [user]
     useConfigOnly = true
-    email = jasny@amazon.com
-    name = Vojtech Jasny
+	email = jasny@amazon.com
+	name = Vojtech Jasny
 
 [alias]
     st = status
@@ -23,7 +23,7 @@
     dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 
     root = rev-parse --show-toplevel
-    exec = "!exec "
+    amend = commit --amend
 
 [colors]
     ui = true
@@ -37,7 +37,7 @@
 
 [core]
     pager = less -FXRS
-    excludesfile = /Users/jasny/.gitignore_global
+	excludesfile = /Users/jasny/.gitignore_global
 
 [amazon]
     append-cr-url = true
@@ -59,4 +59,6 @@
     default = simple
 
 [commit]
-    template = /Users/jasny/.stCommitMsg
+	template = /Users/jasny/.stCommitMsg
+[status]
+	submoduleSummary = true
