@@ -67,10 +67,6 @@ bindkey "^U" backward-kill-line
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 
-lock() {
-    echo "No, no. Use Alfred."
-}
-
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
