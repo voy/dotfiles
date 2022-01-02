@@ -1,6 +1,6 @@
 [user]
     useConfigOnly = true
-	email = jasny@amazon.com
+	email = voy@miro.com
 	name = Vojtech Jasny
 
 [alias]
@@ -19,7 +19,7 @@
     recent-branches = "!f() { git for-each-ref --format='%(refname:short)' --sort=-committerdate --count 15 refs/heads/ | tail -r; }; f"
 
     home = "!f() { git config user.email 'voy@voy.cz'; git config user.name 'Vojtech Jasny'; }; f"
-    work = "!f() { git config user.email 'jasny@amazon.com'; git config user.name 'Vojtech Jasny'; }; f"
+    work = "!f() { git config user.email 'voy@miro.com'; git config user.name 'Vojtech Jasny'; }; f"
     dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 
     root = rev-parse --show-toplevel
@@ -37,7 +37,7 @@
 
 [core]
     pager = less -FXRS
-	excludesfile = /Users/jasny/.gitignore_global
+	excludesfile = /Users/voy/.gitignore_global
 
 [amazon]
     append-cr-url = true

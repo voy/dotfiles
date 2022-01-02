@@ -12,10 +12,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
 Plugin 'Quramy/tsuquyomi'
 
-" for Chaplin development, otherwise not needed
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mustache/vim-mustache-handlebars'
-
 call vundle#end()
 filetype plugin indent on
 

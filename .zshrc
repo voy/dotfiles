@@ -1,3 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
 ZSH=$HOME/.oh-my-zsh
 
 export UPDATE_ZSH_DAYS=90
@@ -12,10 +21,9 @@ export NVM_LAZY_LOAD=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git brew battery fzf-zsh zsh-nvm)
+plugins=(git brew battery fzf nvm z)
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/dotfiles/z.sh
 
 # turn off all zsh autocorrections
 unsetopt correct_all
@@ -34,14 +42,6 @@ PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
 PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 PATH=$PATH:/opt/apache-maven-3.3.9/bin
 
-git_prompt() {
-    git_prompt_info | sed 's/git://'
-}
-
-local smiley="%(?,%{$fg[green]%}:)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
-PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%c)%{$reset_color%} ${smiley} '
-RPROMPT='%{$fg_bold[yellow]%}$(git_prompt)%{$reset_color%} $(battery_pct_prompt)'
-
 export EDITOR=vim
 export CLICOLOR=1
 
@@ -52,7 +52,7 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias vim='vim -p'
 alias vi='vim -p'
-alias c='code .'
+alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -70,33 +70,10 @@ bindkey "^N" down-line-or-search
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-generate-daily-log-template() {
-    echo "# Weekly log"
-    echo
-
-    local monday=$1
-
-    for i in `seq 0 4`; do
-      gdate -d"$monday+$i days" "+## %A %d.%m.%Y"
-      echo
-    done
-}
-
-daily-log() {
-    local monday=$(date -v -Mon "+%Y-%m-%d")
-    local markdown_path="$HOME/Documents/notes/$monday.md"
-
-    if [[ ! -f $markdown_path ]]; then
-        generate-daily-log-template $monday > $markdown_path
-    fi
-
-    macdown "$markdown_path"
-}
-
 zstyle ':completion:*' matcher-list '' \
     'm:{a-z\-}={A-Z\_}' \
     'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
     'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 
-source $HOME/.zshrc.aws
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
