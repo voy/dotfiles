@@ -1,0 +1,20 @@
+export M2_HOME="/opt/homebrew/opt/maven@3.5"
+export PATH="$M2_HOME/bin:$PATH"
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+export REJECT_CONSOLE=off
+
+function update-spectator-config {
+    local top_level_dir="$(git rev-parse --show-toplevel)"
+    pushd "${top_level_dir}/e2e-tests/client" >/dev/null
+    npx spectator switch --name local-release
+    popd >/dev/null
+}
+
+function generate-allure-id {
+    local top_level_dir="$(git rev-parse --show-toplevel)"
+    local spec_file="$(realpath $1)"
+    pushd "${top_level_dir}/e2e-tests/client" >/dev/null
+    npx spectator generate-allure-id -s "$spec_file"
+    popd >/dev/null
+}

@@ -10,20 +10,16 @@
 
     l  = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]'
     sl = log --pretty=format:'%Cred%h%Creset %Cgreen%s%Creset [%ar by %an]' -15
-    log-md = "!f() { git log --pretty=format:'* %s [commit](https://code.amazon.com/packages/PKG/commits/%H)'; }; f"
-    changelog = log --format='* `%h` %s'
     d = diff --color=always
     pr = pull --rebase
-    conflicts = "!f() { git ls-files -u | cut -f 2 | sort -u; }; f"
 
     recent-branches = "!f() { git for-each-ref --format='%(refname:short)' --sort=-committerdate --count 15 refs/heads/ | tail -r; }; f"
+    rb = "!git recent-branches | tac | fzf | xargs git checkout"
 
     home = "!f() { git config user.email 'voy@voy.cz'; git config user.name 'Vojtech Jasny'; }; f"
     work = "!f() { git config user.email 'voy@miro.com'; git config user.name 'Vojtech Jasny'; }; f"
-    dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 
-    root = rev-parse --show-toplevel
-    amend = commit --amend
+    rebase-on-master = "!f() { git stash && git fetch origin && git rebase origin/master && git stash pop; }; f"
 
 [colors]
     ui = true
@@ -46,7 +42,7 @@
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"

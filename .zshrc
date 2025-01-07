@@ -16,12 +16,13 @@ export UPDATE_ZSH_DAYS=90
 # much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Must be set before zsh-nvm is loaded
-export NVM_LAZY_LOAD=true
+export NVM_HOMEBREW=$(brew --prefix nvm)
+export NVM_LAZY=1
+export NVM_LAZY_CMD="npx yarn"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git brew battery fzf nvm z)
+plugins=(git brew fzf nvm z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -69,6 +70,8 @@ bindkey "^N" down-line-or-search
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# allow ctrl-a and ctrl-d to select all and deselect all
+export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"
 
 zstyle ':completion:*' matcher-list '' \
     'm:{a-z\-}={A-Z\_}' \
@@ -77,3 +80,21 @@ zstyle ':completion:*' matcher-list '' \
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source ~/.zshrc.miro
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+function wip() {
+  if git rev-parse --verify wip >/dev/null 2>&1; then
+    git add -A && git commit --amend --no-edit --no-verify
+  else
+    git add -A && git commit --no-verify -m "wip"
+  fi
+}
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
