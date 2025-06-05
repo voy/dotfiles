@@ -72,6 +72,7 @@ module.exports = {
                 "coda.io",
                 "meet.google.com",
                 "miro.tools",
+                "miro.1password.com",
             ]),
             browser: workChrome,
         },
