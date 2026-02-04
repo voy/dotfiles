@@ -33,7 +33,6 @@
 
 [core]
     pager = less -FXRS
-	excludesfile = /Users/voy/.gitignore_global
 
 [amazon]
     append-cr-url = true
@@ -56,3 +55,8 @@
 
 [status]
 	submoduleSummary = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

@@ -16,10 +16,6 @@ export UPDATE_ZSH_DAYS=90
 # much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-export NVM_HOMEBREW=$(brew --prefix nvm)
-export NVM_LAZY=1
-export NVM_LAZY_CMD="npx yarn"
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git brew fzf nvm z)
@@ -37,11 +33,14 @@ unsetopt auto_name_dirs
 setopt autopushd
 
 # run git from homebrew, not the system one
-PATH=/usr/local/bin:$PATH
+PATH=/usr/local/bin:$HOME/Library/Python/3.9/bin:$PATH
 # custom vim locations
 PATH=$PATH:$HOME/bin/vim/bin:/opt/vim/bin
 PATH=$PATH:$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 PATH=$PATH:/opt/apache-maven-3.3.9/bin
+PATH=$PATH:/opt/homebrew/opt/python@3.13/libexec/bin
+PATH=$PATH:$HOME/.local/bin
+PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 
 export EDITOR=vim
 export CLICOLOR=1
@@ -100,3 +99,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 [[ -s "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+export NVM_HOMEBREW=$(brew --prefix nvm)
+export NVM_LAZY=1
+export NVM_LAZY_CMD="npx yarn"
+
+alias awsp="source _awsp"

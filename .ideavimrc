@@ -1,7 +1,0 @@
-imap jj <ESC>
-
-set ignorecase
-set smartcase
-
-" dot returns cursor back after command is repeated
-nmap . .`[

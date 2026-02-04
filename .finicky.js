@@ -1,11 +1,13 @@
+// use chrome://version to identify the profile name
+
 const personalChrome = {
     name: "Google Chrome",
-    profile: "Default",
+    profile: "Private",
 };
 
 const workChrome = {
     name: "Google Chrome",
-    profile: "Profile 2",
+    profile: "Work",
 };
 
 const vanillaChrome = {
@@ -13,27 +15,26 @@ const vanillaChrome = {
 };
 
 const slackBundleId = "com.tinyspeck.slackmacgap";
-const globalProtectBundleId = "com.paloaltonetworks.GlobalProtect.client";
 
 const matchDomains = (domains) => {
-    return finicky.matchDomains(
+    return finicky.matchHostnames(
         domains.map((domain) => {
+            if (domain instanceof RegExp) {
+                return domain
+            }
+
             const escapedDomain = domain.replace(/\./g, "\\.");
             return new RegExp(`(.+\\.)?${escapedDomain}`);
         })
     );
 };
 
-module.exports = {
+export default {
     defaultBrowser: personalChrome,
     handlers: [
         {
             match: "slovnik.seznam.cz/*",
             browser: vanillaChrome,
-        },
-        {
-            match: ({ url }) => url.pathname.includes("GlobalProtect"),
-            browser: workChrome,
         },
         {
             // family planning board
@@ -49,30 +50,36 @@ module.exports = {
             browser: personalChrome,
         },
         {
-            match: ({ opener }) =>
-                [slackBundleId, globalProtectBundleId].includes(
+            match: (_url, { opener }) =>
+                [slackBundleId].includes(
                     opener.bundleId
                 ),
             browser: workChrome,
         },
         {
             match: matchDomains([
+                "127.0.0.1",
+                "localhost",
                 "devrtb.com",
                 "github.com",
-                "miro.atlassian.net",
-                "miro.com",
-                "miro.glean.com",
+                "atlassian.net",
                 "okta.com",
                 "testmiro.com",
                 "login.docker.com",
-                "miro.design",
                 "app.lokalise.com",
                 "cloud.memsource.com",
                 "realtimeboard.app.opsgenie.com",
                 "coda.io",
                 "meet.google.com",
-                "miro.tools",
-                "miro.1password.com",
+                /^miro\./,
+                /\.miro\./,
+                /miro.tools$/,
+                "cursor.sh",
+                "cursor.com",
+                "app.signadot.com",
+                "auth.signadot.com",
+                "www.braintrust.dev",
+                "app.incident.io"
             ]),
             browser: workChrome,
         },

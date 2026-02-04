@@ -10,7 +10,6 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tomasr/molokai'
-Plugin 'Quramy/tsuquyomi'
 
 call vundle#end()
 filetype plugin indent on

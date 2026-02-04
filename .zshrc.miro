@@ -1,13 +1,18 @@
 export M2_HOME="/opt/homebrew/opt/maven@3.5"
-export PATH="$M2_HOME/bin:$PATH"
+export PATH="$M2_HOME/bin:$PATH:$HOME/dev/tsh-aws-credentials"
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 export REJECT_CONSOLE=off
+
+export AWS_DEFAULT_REGION="eu-west-1"
+# WARNING: this is a footgun if you need to use a different profile!
+export AWS_PROFILE="teleport/aws/miro-staging-env-eu01/TeleportPowerUser"
+
+export MIRO_POSTAGE_APP_ACCESS_TOKEN="eyJtaXJvLm9yaWdpbiI6ImV1MDEifQ_qLRbZtnOeYvSREmj83jg8jl9tco"
 
 function update-spectator-config {
     local top_level_dir="$(git rev-parse --show-toplevel)"
     pushd "${top_level_dir}/e2e-tests/client" >/dev/null
-    npx spectator switch --name local-release
+    npx spectator switch --name autotests-9 --client-version local
     popd >/dev/null
 }
 
@@ -17,4 +22,51 @@ function generate-allure-id {
     pushd "${top_level_dir}/e2e-tests/client" >/dev/null
     npx spectator generate-allure-id -s "$spec_file"
     popd >/dev/null
+}
+
+function commit-with-branch {
+    # Function to get the current git branch name
+    local branch_name=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+    # Check if inside a git repository
+    if [ -z "$branch_name" ]; then
+        echo "Not inside a git repository."
+        return 1
+    fi
+
+    # Initialize commit message
+    local commit_message=""
+
+    # Iterate over arguments to find the commit message
+    for arg in "$@"; do
+        case $arg in
+            -m|--message)
+                shift
+                commit_message="$1"
+                ;;
+        esac
+    done
+
+    # Prepend the branch name to the commit message if it exists
+    if [ -n "$commit_message" ]; then
+        commit_message="$branch_name $commit_message"
+        set -- "${@/-m "$commit_message"/}" # Remove original message argument
+        set -- "${@/--message "$commit_message"/}" # Remove original message argument
+        set -- "$@" -m "$commit_message" # Add new message argument
+    fi
+
+    # Perform the git commit with the modified message and other options
+    git commit "$@"
+}
+
+# This is so that the swagger UI in core-ai-api can talk to Miro. $1 is the `token`
+# from cookies on staging.
+function create_staging_passport {
+    user_data=`passport-cli create passport --session-token="$1" --miroenv=staging -k8s=staging-eu`
+
+    user_id=`echo $user_data | jq -r '.identityData.userId'`
+    session_id=`echo $user_data | jq -r '.sessionData.id'`
+
+    export MIRO_PASSPORT=`passport-cli generate-token session -exp 2035-01-01T00:00:00.00Z -u $user_id -s $session_id`
+    export MIRO_BOARD_ID=uXjVOcBlJvQ=
 }
