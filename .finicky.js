@@ -79,7 +79,8 @@ export default {
                 "app.signadot.com",
                 "auth.signadot.com",
                 "www.braintrust.dev",
-                "app.incident.io"
+                "app.incident.io",
+                "miro-be.glean.com"
             ]),
             browser: workChrome,
         },
