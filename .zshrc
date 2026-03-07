@@ -1,21 +1,5 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-
-ZSH=$HOME/.oh-my-zsh
-
-export UPDATE_ZSH_DAYS=90
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git brew fzf nvm z)
-
-source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit && compinit
+autoload -Uz add-zsh-hook
 
 # turn off all zsh autocorrections
 unsetopt correct_all
@@ -66,6 +50,9 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # allow ctrl-a and ctrl-d to select all and deselect all
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"
+
+source <(fzf --zsh)
+[[ -f $(brew --prefix)/etc/profile.d/z.sh ]] && source $(brew --prefix)/etc/profile.d/z.sh
 
 zstyle ':completion:*' matcher-list '' \
     'm:{a-z\-}={A-Z\_}' \

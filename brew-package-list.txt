@@ -4,5 +4,6 @@ git
 gnu-sed
 neovim
 nvm
+pure
 watch
 wget
