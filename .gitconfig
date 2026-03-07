@@ -19,8 +19,6 @@
     home = "!f() { git config user.email 'voy@voy.cz'; git config user.name 'Vojtech Jasny'; }; f"
     work = "!f() { git config user.email 'voy@miro.com'; git config user.name 'Vojtech Jasny'; }; f"
 
-    rebase-on-master = "!f() { git stash && git fetch origin && git rebase origin/master && git stash pop; }; f"
-
 [colors]
     ui = true
     diff = auto
@@ -33,6 +31,8 @@
 
 [core]
     pager = less -FXRS
+    untrackedCache = true
+    fsmonitor = true
 
 [amazon]
     append-cr-url = true
@@ -55,8 +55,14 @@
 
 [status]
 	submoduleSummary = true
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+
+[maintenance]
+	repo = /Users/voy/dev/client
+[init]
+	defaultBranch = main
