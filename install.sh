@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_PATH=$(dirname $0)
-FILES=".ackrc .gitconfig .npmrc .vim .vimrc .zshrc .zshrc.miro .gitignore_global .p10k.zsh"
+FILES=".ackrc .gitconfig .npmrc .vim .vimrc .zshrc .zshrc.miro .gitignore_global"
 
 mkdir -p "$HOME/.vimtmp"
 
