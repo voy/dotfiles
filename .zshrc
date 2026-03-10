@@ -1,3 +1,7 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+
 autoload -Uz compinit && compinit
 autoload -Uz add-zsh-hook
 
